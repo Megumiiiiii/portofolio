@@ -18,6 +18,11 @@ export default function Home( {}: Props ) {
         <title>Megumii - Portofolio</title>
         <meta name="description" content="My Portofolio" />
         <link rel="icon" href="/me.ico" />
+        <meta property="og:image" content="pict/pr.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1919" />
+        <meta property="og:image:height" content="885" />
+        <meta property="og:url" content="ar://megumii" />
       </Head>
 
       <Header />
