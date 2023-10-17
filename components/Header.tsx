@@ -23,7 +23,7 @@ export default function Header({}: Props) {
         }}
         className='flex flex-row items-center'>
             {/* Social Icons */}
-            <SocialIcon url="https://twitter.com/megumii_tez"
+            <SocialIcon url="https://x.com/megumii_tez"
             rel='noreferrer'
             target='_blank'
             fgColor='purple'
@@ -41,18 +41,12 @@ export default function Header({}: Props) {
             fgColor='purple'
             bgColor='transparent'
             />
-            <SocialIcon url="https://megumiiiiii.github.io/blog/"
+            <SocialIcon url="https://kessoku.xyz/"
             rel='noreferrer'
             target='_blank'
             fgColor='purple'
             bgColor='transparent'
-            />
-            <SocialIcon url="https://megumiiiiii.github.io/docs/"
-            rel='noreferrer'
-            target='_blank'
-            fgColor='purple'
-            bgColor='transparent'
-            />                       
+            />                      
         </motion.div>
         <motion.div
         initial={{
