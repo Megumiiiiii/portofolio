@@ -23,7 +23,7 @@ export default function Header({}: Props) {
         }}
         className='flex flex-row items-center'>
             {/* Social Icons */}
-            <SocialIcon url="https://x.com/megumii_tez"
+            <SocialIcon url="https://twitter.com/megumii_tez"
             rel='noreferrer'
             target='_blank'
             fgColor='purple'
