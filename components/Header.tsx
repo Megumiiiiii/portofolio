@@ -70,7 +70,7 @@ export default function Header({}: Props) {
             bgColor='transparent'
             />
             <p className='hidden md:inline-flex text-sm text-pink-400'>
-                Let's Talk
+                Let&#39;s Talk
             </p>
         </motion.div>
     </header>
