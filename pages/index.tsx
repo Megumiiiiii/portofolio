@@ -8,6 +8,7 @@ import ContactMe from '../components/ContactMe';
 import Skills from '../components/Skills'
 import Projects from '../components/Project'
 import Archive from '../components/Archive'
+import { useState, useEffect } from 'react'
 
 type Props = {}
 
@@ -54,7 +55,6 @@ export default function Home( {}: Props ) {
       <section id="contact" className="snap-start">
         <ContactMe />
       </section>
-
 
         <footer className='sticky bottom-3 md:text-center space-y-4 ml-5 text-sm'>
           <span>Built with 💜&#65039; by the Arweave community. Learn more at &nbsp;</span><a target="_blank" rel="noreferrer" href="https://arweave.org"><strong><span className='text-purple-600'> Arweave.org</span></strong></a>

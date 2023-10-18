@@ -8,11 +8,11 @@ export default function Skills({}: Props) {
     <div className='group relative flex cursor-pointer'>
         <motion.img
         initial={{
-            x: -400,
+            y: -300,
             opacity: 0
         }}
-        transition={{ duration: 1.2 }}
-        whileInView={{ opacity: 1, x:0 }}
+        transition={{ duration: 1.8 }}
+        whileInView={{ opacity: 1, y:0 }}
         src='./pict/cess.png'
         className='object-cover w-20 h-20 md:w-24 md:h-24 xl:w-28 xl:h-28 rounded-full filter group-hover:grayscale border transition duration-300 ease-in-out'
         />

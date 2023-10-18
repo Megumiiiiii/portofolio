@@ -69,8 +69,8 @@ export default function Header({}: Props) {
             fgColor='purple'
             bgColor='transparent'
             />
-            <p className='uppercase hidden md:inline-flex text-sm text-pink-400'>
-                Contact me
+            <p className='hidden md:inline-flex text-sm text-pink-400'>
+                Let's Talk
             </p>
         </motion.div>
     </header>
