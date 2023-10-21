@@ -41,7 +41,7 @@ export default function Header({}: Props) {
             fgColor='purple'
             bgColor='transparent'
             />
-            <SocialIcon network="slack" url="https://3D_megumii.arweave.dev"
+            <SocialIcon network="slack" url="https://3D_megumii.ar-io.dev"
             rel='noreferrer'
             target='_blank'
             fgColor='purple'
