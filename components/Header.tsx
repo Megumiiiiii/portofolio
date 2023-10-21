@@ -23,7 +23,7 @@ export default function Header({}: Props) {
         }}
         className='flex flex-row items-center'>
             {/* Social Icons */}
-            <SocialIcon url="https://twitter.com/megumii_tez"
+            <SocialIcon network="twitter" url="https://x.com/megumii_tez"
             rel='noreferrer'
             target='_blank'
             fgColor='purple'
@@ -35,18 +35,24 @@ export default function Header({}: Props) {
             fgColor='purple'
             bgColor='transparent'
             />
-            <SocialIcon url="https://link_megumii.blessingway.xyz"
+            <SocialIcon network="linktree" url="https://link_megumii.blessingway.xyz"
             rel='noreferrer'
             target='_blank'
             fgColor='purple'
             bgColor='transparent'
             />
-            <SocialIcon url="https://kessoku.xyz/"
+            <SocialIcon network="slack" url="https://3D_megumii.arweave.dev"
             rel='noreferrer'
             target='_blank'
             fgColor='purple'
             bgColor='transparent'
-            />                      
+            />
+            <SocialIcon network="vsco" url="https://kessoku.xyz"
+            rel='noreferrer'
+            target='_blank'
+            fgColor='purple'
+            bgColor='transparent'
+            />                       
         </motion.div>
         <motion.div
         initial={{
