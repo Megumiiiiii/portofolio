@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/megumii
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://megumii.xyz
+  * I am megumii (https://keybase.io/megumii) on keybase.
+  * I have a public key with fingerprint B242 1751 E825 2946 220F  BC20 BCB4 C762 969C A9C7
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01208028b0bde071541125eae964336c4cb538beb3cf3425689c14235b7d4cbfd2730a",
+      "fingerprint": "b2421751e8252946220fbc20bcb4c762969ca9c7",
+      "host": "keybase.io",
+      "key_id": "bcb4c762969ca9c7",
+      "kid": "0101e5f7c177577e8f60d52440df5d6ddce4ac85e2e5284e3ca0177fd026dfb8f7d70a",
+      "uid": "30c9c2369eb7fa147192aa19789b1619",
+      "username": "megumii"
+    },
+    "service": {
+      "hostname": "megumii.xyz",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1697975500,
+  "expire_in": 157680000,
+  "prev": "769b6fb004996ee5ca26d24e165160883d572c99adc9272f099d390c57a335ea",
+  "seqno": 15,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMNtAnicbZJ7UFVVFMYvFDYxODJBJWTQnNSJIt1nn8c+h2imhjTBoEKDGFA6j33g
+BPfBfXEfXGeC8IHCgBOXsVAgi4JIqKjAEobiYV6YtEQbJStKzNICGfABSucw+Ucz
+/bVnr/X7vvnW2rt/6R2G0KAvO4dEf33LUFCgz+8wYCZs2EuIZtlNJHiJArx44EIZ
+2+y5BapMJBCAhIADkBOBKGOASIYmSchgAfMsTVGsREsiQ3EiFilJoWjIsBwvkTSk
+GBHJWk+RIaKAQMQTimrKw1aLVTXZNVsR0pBEDIk5yECeZiEEiihBIEoiLSEW8iwv
+CbyENGG+2aYrtHCiYMNrVLNW0y65i/H+h7+dG5CYUZBEIsQghDmFBTIDaRrICiOz
+sixhWpA4BkPMQI7GlCQADVVkAFlZETkFyWgxt2PRjgISL0GK5bGIFIGkEclDQSB5
+xPEiyZK8Dtqw1SQYsUYbcZ7DqKqEL57Qik5Vwvpe9UH+C6xxuT2a0mI1282SuVBr
+5NvtFluCLrS7LTpZjMXcfz1yRdUka1vUFE5stalmE5FAaqRkV3VTkuURjxgGgHgC
+uyyqFeeqOsEglgNAr1qs2KlZIpYXWUUEgOZ5FmNGErSRIY1JliFZwHGUzCAo8bwg
+SzxEUAE8L1M8kBgkUJT29IQ+VZHJrHtrOYU8zdOm5pkEu8OKCd9XfTl3GoJCDUtC
+gvXvZQi9O/z2p3MFwg1lp4jS58FcU/7KyorrUTOHz28SLoUIUfseiWtdYfWfLE3x
+DboPVdY+lG7b2TZuIunoD5zrDeOHxUQ14tAImZbZmjjckrXQPfpj3c4HTl4LVLmT
+Lvene3wvx8U2Luu3vLbWd1fB9O/PZRyYmElRH7tIpGXM7uhpupRdlRjc3FAem+M8
+mPXt7uFfrlXXx/5w9qOIX8ebnwKu0T9edwzXXjnQNxX34ku/Zd1wzr+fOvLF1Ydb
+liZWdGbWeQu+N002fhfX8N6H7VO3jpRNhA12777sHpgl340+nlyyIfXJBzO3pzYH
+S4Yl9UHzn9+TvOqvr0+nvlFQc7R/Icbz5/nK2f21Z7aNRrSPX03Kal/ZM9i9wjfb
+cTa4cvrcja62RuNPvesii07sDZrsOlW50bFqe8WccV87W08HOm523np7IH1PlCnt
+09gseznzuGsw+el7N7S9FVM4UDIHkiaz/VWdm5+dnrzSvfXjdY9uWT8dlzuUcfr4
+fa9+EjnqZ/d3zxxJ3hpTw86NpYec2OUttt3c6O9Y1ujuwqLj6PX2kZIXBpsmopjo
+nuUAX8wmY77ZNTu6p7E89eeGnLXccldvkTG0qzNt8/1VNasvuDywwjNfOll9rHrM
+kxK/6aDR2vvEtg7HM1vK1reGTyjn3ix+pWmMg2E7vGEB4Jxy1QV8UdOfnYldvfD3
+O/4LZd7IeOrYwvA/JFPQQQ==
+=k4ew
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/megumii
+
+==================================================================
