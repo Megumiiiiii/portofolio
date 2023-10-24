@@ -24,9 +24,9 @@ Skills({}: Props) {
     transition={{ duration: 1.5 }}
     viewport={{ once: true }}
     className='h-screen flex relative flex-col text-center md:text-left xl:flex-row max-w-[2000px] xl:px-10 min-h-screen justify-center xl:space-y-0 mx-auto items-center'>
-        <h3 className='absolute top-10 uppercase tracking-[10px] text-pink-500 font-serif text-2xl'>
+        <h4 className='absolute top-10 uppercase tracking-[10px] text-pink-500 font-serif text-1xl'>
             Skills
-        </h3>
+        </h4>
         <div className='mb-50 md:mb-0 grid grid-cols-4 gap-4'>
           <Skill />
           <Skill1 />

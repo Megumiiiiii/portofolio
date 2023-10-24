@@ -9,7 +9,7 @@ export default function Projects({}: Props) {
     whileInView={{ opacity: 1 }}
     transition={{ duration: 1.5 }}
     className='flex relative overflow-hidden flex-col text-left md:flex-row max-w-full h-screen justify-evenly mx-auto items-center z-0'>
-        <h4 className='absolute top-12 uppercase tracking-[10px] text-pink-500 font-serif text-2xl'>
+        <h4 className='absolute top-12 uppercase tracking-[10px] text-pink-500 font-serif text-1xl'>
             Active Nodes
         </h4>
         <div className="relative w-full flex overflow-x-scroll snap-x snap-mandatory z-20 scrollbar scrollbar-track-pink-200 scrollbar-thumb-pink-500">
