@@ -12,11 +12,11 @@ export default function About({ }: Props) {
       >
 
         <div>
-          <h1 className="space-y-10 px-10 md:px-10 font-bold">
+          <h1 className="space-y-10 px-10 md:px-10 text-2xl font-bold">
             Here is a litle background
           </h1>
           <br/>
-          <p className='text-sm mx-auto font-mono'>
+          <p className='font-medium lg:text-[25px] sm:text-[21px] xs:text-[15px] text-[11px] lg:leading-[30px]'>
           I am a megumii, i was born on 14 July 2001.<br className="sm:block hidden" />
           I love anime & rhythm games. Came to web3 since 2022.
           </p>

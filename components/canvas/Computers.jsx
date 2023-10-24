@@ -21,8 +21,8 @@ const Computers = ({}) => {
       <pointLight intensity={1} />
       <primitive
         object={computer.scene}
-        scale={0.8}
-        position={[0, -4.25, -1.5]}
+        scale={0.45}
+        position={[0, -2.35, -2]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -42,9 +42,11 @@ const ComputersCanvas = () => {
       >
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
-            enableZoom={false}
+            enableZoom={true}
             maxPolarAngle={Math.PI / 2}
             minPolarAngle={Math.PI / 2}
+            autoRotate
+            autoRotateSpeed={1}
           />
           <Computers />
         </Suspense>
