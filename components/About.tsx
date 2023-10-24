@@ -22,9 +22,7 @@ export default function About({ }: Props) {
           </p>
         </div>
       </div>
-      
       <ComputersCanvas />
-
     </motion.div>
   )
 }
