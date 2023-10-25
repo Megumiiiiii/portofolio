@@ -19,6 +19,7 @@ function ContactMe({ }: Props) {
       transition={{ duration: 1.5 }}
       className="flex relative flex-col text-center md:text-center md:flex-row max-w-5xl px-5 h-screen justify-evenly mx-auto items-center"
     >
+      <EarthCanvas />
       <div className="flex flex-col space-y-2 items-center justify-between">
         <div className="space-y-3">
           <div className="flex items-center space-x-5 justify-center">
@@ -39,7 +40,6 @@ function ContactMe({ }: Props) {
         </div>
         </div>
       </div>
-      <EarthCanvas />
     </motion.div>
   );
 }
