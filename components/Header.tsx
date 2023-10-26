@@ -41,13 +41,7 @@ export default function Header({}: Props) {
             fgColor='purple'
             bgColor='transparent'
             />
-            <SocialIcon network="slack" url="https://3D_megumii.ar-io.dev"
-            rel='noreferrer'
-            target='_blank'
-            fgColor='purple'
-            bgColor='transparent'
-            />
-            <SocialIcon network="vsco" url="https://kessoku.xyz"
+            <SocialIcon network="slack" url="https://kessoku.xyz"
             rel='noreferrer'
             target='_blank'
             fgColor='purple'
