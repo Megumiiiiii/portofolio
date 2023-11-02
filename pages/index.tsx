@@ -23,7 +23,10 @@ export default function Home( {}: Props ) {
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1919" />
         <meta property="og:image:height" content="885" />
+        <link rel="canonical" href="https://k.megumii.xyz" />
         <meta property="og:url" content="ar://megumii" />
+        <meta name="keywords" content="personal website, portofolio, website pribadi, tentang saya, about me" />
+        <meta name="twitter:card" content="summary_large_image"/ >
       </Head>
       <Header />
       <section id='hero' className='snap-center'>

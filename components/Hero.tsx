@@ -32,7 +32,7 @@ export default function Hero({ }: Props) {
             </h1>
             <div className='px-5 grid grid-cols-3'>
                 <a href="#about" className='heroButton'>About</a>
-                <a href="https://megumiiiiii.github.io/" rel='noreferrer' target='_blank' className='heroButton'>Docs</a>
+                <a href="https://k.megumii.xyz" rel='noreferrer' target='_blank' className='heroButton'>Docs</a>
                 <a href="#experience" className='heroButton'>Experiences</a>
                 <a href="#skill" className='heroButton'>Skills</a>
                 <a href="#contact"className='heroButton'>Contact</a>
