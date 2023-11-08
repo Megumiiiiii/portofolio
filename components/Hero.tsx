@@ -22,7 +22,7 @@ export default function Hero({ }: Props) {
          <img
          className='relative rounded-full h-32 w-32 mx-auto object-cover'
          src='./pict/zz.png'
-         alt=''
+         alt='megumii'
          />     
          <div className='z-20'>
             <h1 className='text-3xl lg:text-4xl font-semibold px-10'>

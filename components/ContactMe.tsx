@@ -35,7 +35,7 @@ function ContactMe({ }: Props) {
 
           <div className="flex items-center space-x-5 justify-center">
         <a href="https://discordapp.com/users/873803230042263563" target="_blank" rel="noreferrer">
-            <img src="https://lanyard.cnrad.dev/api/873803230042263563?idleMessage=:doing%20something%20else...&bg=51177a" alt="Discord Presence"/>
+            <img src="https://lanyard.cnrad.dev/api/873803230042263563?idleMessage=:doing%20something%20else...&bg=427bc2" alt="Discord Presence"/>
         </a>
         </div>
         </div>

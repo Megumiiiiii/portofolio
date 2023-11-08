@@ -23,7 +23,7 @@ export default function Projects({}: Props) {
                 whileInView={{ opacity: 1, y: 0}}
                 className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
                 src="./pict/sarco.png" 
-                alt=""/>
+                alt="sarco"/>
                 <div className="space-y-10 px-0 md:px-10">
                     <h3 className="text-lg font-semibold text-pink-500 text-center">Mainnet &amp; Testnet Node Operator</h3>
                 </div>
@@ -53,7 +53,7 @@ export default function Projects({}: Props) {
                 whileInView={{ opacity: 1, y: 0}}
                 className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
                 src="./pict/ar.png" 
-                alt=""/>
+                alt="ar"/>
                 <div className="space-y-10 px-0 md:px-10">
                     <h3 className="text-lg font-semibold text-pink-500 text-center">Gateway Operator</h3>
                 </div>
@@ -84,7 +84,7 @@ export default function Projects({}: Props) {
                 whileInView={{ opacity: 1, y: 0}}
                 className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
                 src="./pict/ctc.png" 
-                alt=""/>
+                alt="ctc"/>
                 <div className="space-y-10 px-0 md:px-10">
                     <h3 className="text-lg font-semibold text-pink-500 text-center">Mainnet Validator</h3>
                 </div>
@@ -114,7 +114,7 @@ export default function Projects({}: Props) {
                 whileInView={{ opacity: 1, y: 0}}
                 className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
                 src="./pict/tangle.png" 
-                alt=""/>
+                alt="tangle"/>
                 <div className="space-y-10 px-0 md:px-10">
                     <h3 className="text-lg font-semibold text-pink-500 text-center">Testnet Validator</h3>
                 </div>

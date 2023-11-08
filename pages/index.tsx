@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+//import Image from 'next/image'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import About from '../components/About'
@@ -7,7 +7,7 @@ import WorkExperience from '../components/WorkExperience'
 import ContactMe from '../components/ContactMe';
 import Skills from '../components/Skills'
 import Projects from '../components/Project'
-import Archive from '../components/Archive'
+//import Archive from '../components/Archive'
 
 type Props = {}
 
@@ -24,9 +24,11 @@ export default function Home( {}: Props ) {
         <meta property="og:image:width" content="1919" />
         <meta property="og:image:height" content="885" />
         <link rel="canonical" href="https://k.megumii.xyz" />
+        <meta name="Timestamp" content="2023-09-14T06:12:52.859Z" />
+        <meta name="Creator" content="xFK3NdQ1utoPQ2tXMgNKFn9oZGw0Tl4ihNo7JY5Ldnk" />
         <meta property="og:url" content="ar://megumii" />
-        <meta name="keywords" content="personal website, portofolio, website pribadi, tentang saya, about me" />
-        <meta name="twitter:card" content="summary_large_image"/ >
+        <meta name="keywords" content="personal website, portofolio, website pribadi, tentang saya, about me, megumii, about megumii, megumii katou" />
+        <meta name="twitter:card" content="summary_large_image" />     
       </Head>
       <Header />
       <section id='hero' className='snap-center'>
@@ -53,5 +55,3 @@ export default function Home( {}: Props ) {
     </div>
   )
 }
-
-

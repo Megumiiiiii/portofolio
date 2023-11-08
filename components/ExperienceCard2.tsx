@@ -15,7 +15,7 @@ export default function ExperienceCard({}: Props) {
         whileInView={{ opacity: 1, y: 0}}
         className='w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center '
         src='./pict/nibiru.png'
-        alt=''
+        alt='nibi'
         />
             <div>
                 <h3 className='text-4xl font-sans text-semibold md:text-center'>Nibiru</h3>
