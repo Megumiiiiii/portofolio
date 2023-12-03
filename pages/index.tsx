@@ -5,7 +5,6 @@ import Hero from '../components/Hero'
 import About from '../components/About'
 import WorkExperience from '../components/WorkExperience'
 import ContactMe from '../components/ContactMe';
-import Skills from '../components/Skills'
 import Projects from '../components/Project'
 //import Archive from '../components/Archive'
 
@@ -23,6 +22,7 @@ export default function Home( {}: Props ) {
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1919" />
         <meta property="og:image:height" content="885" />
+        <meta property="og:image" content="/pr.png" />
         <link rel="canonical" href="https://k.megumii.xyz" />
         <meta name="Timestamp" content="2023-09-14T06:12:52.859Z" />
         <meta name="Creator" content="xFK3NdQ1utoPQ2tXMgNKFn9oZGw0Tl4ihNo7JY5Ldnk" />
@@ -39,9 +39,6 @@ export default function Home( {}: Props ) {
       </section>
       <section id='experience' className='snap-start'>
         <WorkExperience />
-      </section>
-      <section id='skill' className='snap-start'>
-        <Skills />
       </section>
       <section id='project' className='snap-start'>
         <Projects />

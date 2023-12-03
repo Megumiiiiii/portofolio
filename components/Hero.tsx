@@ -34,8 +34,8 @@ export default function Hero({ }: Props) {
                 <a href="#about" className='heroButton'>About</a>
                 <a href="https://k.megumii.xyz" rel='noreferrer' target='_blank' className='heroButton'>Docs</a>
                 <a href="#experience" className='heroButton'>Experiences</a>
-                <a href="#skill" className='heroButton'>Skills</a>
-                <a href="#contact"className='heroButton'>Contact</a>
+                <a href="#contact" className='heroButton'>Contact</a>
+                <a href="" className='heroButton'>F5</a>
                 <a href="#project" className='heroButton'>Nodes</a>
             </div>
          </div>

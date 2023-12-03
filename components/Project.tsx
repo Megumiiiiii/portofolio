@@ -25,6 +25,9 @@ export default function Projects({}: Props) {
                 src="./pict/sarco.png" 
                 alt="sarco"/>
                 <div className="space-y-10 px-0 md:px-10">
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Sarcophagus</h3>
+                </div>
+                <div className="space-y-10 px-0 md:px-10">
                     <h3 className="text-lg font-semibold text-pink-500 text-center">Mainnet &amp; Testnet Node Operator</h3>
                 </div>
                 <div className="flex items-center space-x-2 justify-center">
@@ -33,6 +36,7 @@ export default function Projects({}: Props) {
                     <img className="h-7 w-7" src="./pict/ubuntu.png" alt=""/>
                     <img className="h-7 w-7" src="./pict/vim.png" alt=""/>
                     <img className="h-7 w-7" src="./pict/docker.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/metamask.png" alt=""/>
                 </div>
                 <div className="space-y-10 px-0 md:px-10">
                   <h4 className="text-sm font-semibold text-pink-500 text-center">A decentralized dead man&#x27;s switch built on Ethereum and Arweave.</h4>
@@ -43,6 +47,7 @@ export default function Projects({}: Props) {
                     </a>
                 </div>
             </div>
+
             <div className="cursor-auto w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen rounded-full">
                 <motion.img
                 initial={{
@@ -54,6 +59,9 @@ export default function Projects({}: Props) {
                 className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
                 src="./pict/ar.png" 
                 alt="ar"/>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Ar.io</h3>
+                </div>
                 <div className="space-y-10 px-0 md:px-10">
                     <h3 className="text-lg font-semibold text-pink-500 text-center">Gateway Operator</h3>
                 </div>
@@ -74,36 +82,77 @@ export default function Projects({}: Props) {
                     </a>
                 </div>
             </div>
+
             <div className="cursor-auto w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen rounded-full">
-                <motion.img 
+                <motion.img
                 initial={{
                     y: 100,
                     opacity: 0,
-                }}
+                }} 
                 transition={{ duration: 1.2 }}
                 whileInView={{ opacity: 1, y: 0}}
                 className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
-                src="./pict/ctc.png" 
-                alt="ctc"/>
+                src="./pict/avail.png" 
+                alt="avail"/>
                 <div className="space-y-10 px-0 md:px-10">
-                    <h3 className="text-lg font-semibold text-pink-500 text-center">Mainnet Validator</h3>
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Avail</h3>
+                </div>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Validator</h3>
                 </div>
                 <div className="flex items-center space-x-2 justify-center">
                     <img className="h-7 w-7" src="./pict/copy.png" alt=""/>
                     <img className="h-7 w-7" src="./pict/github.png" alt=""/>
                     <img className="h-7 w-7" src="./pict/ubuntu.png" alt=""/>
                     <img className="h-7 w-7" src="./pict/vim.png" alt=""/>
-                    <img className="h-7 w-7" src="./pict/docker.png" alt=""/>
                 </div>
                 <div className="space-y-10 px-0 md:px-10">
-                    <h4 className="text-sm font-semibold text-pink-500 text-center">Creditcoin is the pioneer of real-world asset innovations making a real impact 🚀 Join our quest for a multi-chain #RWA future with Universal Smart Contracts 🔥</h4>
+                    <h4 className="text-sm font-semibold text-pink-500 text-center">Avail is a modular blockchain with a data availability layer designed to scale blockchain networks</h4>
                 </div>
                 <div className="space-x-5 px-10 cursor-pointer">
-                    <a target="_blank" rel="noreferrer" href="https://staking.creditcoin.org/#/validators">
-                    <span className="md:inline-flex text-sm font-mono text-purple-500"><b>staking.creditcoin.org</b></span>
+                    <a target="_blank" rel="noreferrer" href="https://goldberg.avail.tools/">
+                    <span className="md:inline-flex text-sm font-mono text-purple-500"><b>Avail Tools</b></span>
                     </a>
                 </div>
             </div>
+
+            <div className="cursor-auto w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen rounded-full">
+                <motion.img
+                initial={{
+                    y: 100,
+                    opacity: 0,
+                }} 
+                transition={{ duration: 1.2 }}
+                whileInView={{ opacity: 1, y: 0}}
+                className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
+                src="./pict/dym.png" 
+                alt="dym"/>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Dymension</h3>
+                </div>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">RollApp Operator &amp; Validator</h3>
+                </div>
+                <div className="flex items-center space-x-2 justify-center">
+                    <img className="h-7 w-7" src="./pict/copy.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/github.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/ubuntu.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/go.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/js.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/typescript.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/react.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/metamask.png" alt=""/>
+                </div>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h4 className="text-sm font-semibold text-pink-500 text-center">Powering the Internet of RollApps</h4>
+                </div>
+                <div className="space-x-5 px-10 cursor-pointer">
+                    <a target="_blank" rel="noreferrer" href="https://portal.dymension.xyz/rollapp/megumii_6349524-1">
+                    <span className="md:inline-flex text-sm font-mono text-purple-500"><b>Portal</b></span>
+                    </a>
+                </div>
+            </div>
+
             <div className="cursor-auto w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen rounded-full">
                 <motion.img 
                 initial={{
@@ -115,6 +164,9 @@ export default function Projects({}: Props) {
                 className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
                 src="./pict/tangle.png" 
                 alt="tangle"/>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Tangle</h3>
+                </div>
                 <div className="space-y-10 px-0 md:px-10">
                     <h3 className="text-lg font-semibold text-pink-500 text-center">Testnet Validator</h3>
                 </div>
