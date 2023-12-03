@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "megumii",
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
@@ -9,9 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "dragbuild": "next build && next export",
-    "up": "node record.mjs",
-    "deploy": "irys upload-dir ./out -h https://node1.irys.xyz --wallet ./wallet.json -t arweave --index-file index.html --no-confirmation"
+    "deploy": "yarn build; yarn export"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
