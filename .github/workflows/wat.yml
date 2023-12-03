@@ -1,0 +1,27 @@
+name: yahuuuuuuuu
+
+on:
+    push:
+        branches:
+            - "main"
+
+jobs:
+    yahuuuuuuuu:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 18.x
+            - run: yarn --ignore-engines 
+            - run: yarn deploy
+              env:
+                  KEY: ${{ secrets.KEYY }}
+            - uses: Ilshidur/action-discord@master
+              name: Discord Notification
+              env:
+                  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+              with:
+                  args: "The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed."
