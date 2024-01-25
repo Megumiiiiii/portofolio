@@ -25,6 +25,7 @@
     "eslint-config-next": "13.0.6",
     "framer-motion": "^7.6.18",
     "fs": "^0.0.1-security",
+    "lodash.pick": "^4.4.0",
     "maath": "^0.10.4",
     "next": "13.0.6",
     "react": "18.2.0",
@@ -38,13 +39,13 @@
     "yarn": "^1.22.19"
   },
   "devDependencies": {
+    "@irys/sdk": "^0.0.4",
     "arweave": "^1.14.4",
     "arweave-wallet-connector": "^1.0.2",
     "autoprefixer": "^10.4.13",
-    "@irys/sdk": "^0.0.4",
-    "warp-contracts": "^1.4.22",
     "postcss": "^8.4.19",
     "tailwind-scrollbar": "^2.0.1",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "warp-contracts": "^1.4.22"
   }
 }
