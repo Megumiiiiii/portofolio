@@ -35,7 +35,7 @@ export default function ExperienceCard({}: Props) {
             </div>
             <div>
                 <p className='py-5 font-serif text-pink-500'>
-                Fri Mar 17 2023 - Now
+                Fri Mar 17 2023 - Thu Feb 15 2024
                 </p>
             </div>
             <ul className='list-disc text-left object-left space-y-4 ml-5 text-sm'>
