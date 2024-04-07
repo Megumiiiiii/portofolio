@@ -8,7 +8,7 @@ type Props = {};
 export default function Hero({ }: Props) {
     const [text, count] = useTypewriter({
         words: [
-            '2024-Will-Becomes-Anime',
+            '2025-Will-Becomes-Anime',
             '1 + 1 > 2',
         ],
         loop: true,
