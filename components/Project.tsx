@@ -13,40 +13,7 @@ export default function Projects({}: Props) {
             Active Nodes
         </h4>
         <div className="relative w-full flex overflow-x-scroll snap-x snap-mandatory z-20 scrollbar scrollbar-track-pink-200 scrollbar-thumb-pink-500">
-            <div className="cursor-auto w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen rounded-full">
-                <motion.img 
-                initial={{
-                    y: 100,
-                    opacity: 0,
-                }}
-                transition={{ duration: 1.2 }}
-                whileInView={{ opacity: 1, y: 0}}
-                className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
-                src="./pict/sarco.png" 
-                alt="sarco"/>
-                <div className="space-y-10 px-0 md:px-10">
-                    <h3 className="text-lg font-semibold text-pink-500 text-center">Sarcophagus</h3>
-                </div>
-                <div className="space-y-10 px-0 md:px-10">
-                    <h3 className="text-lg font-semibold text-pink-500 text-center">Mainnet &amp; Testnet Node Operator</h3>
-                </div>
-                <div className="flex items-center space-x-2 justify-center">
-                    <img className="h-7 w-7" src="./pict/copy.png" alt=""/>
-                    <img className="h-7 w-7" src="./pict/github.png" alt=""/>
-                    <img className="h-7 w-7" src="./pict/ubuntu.png" alt=""/>
-                    <img className="h-7 w-7" src="./pict/vim.png" alt=""/>
-                    <img className="h-7 w-7" src="./pict/docker.png" alt=""/>
-                    <img className="h-7 w-7" src="./pict/metamask.png" alt=""/>
-                </div>
-                <div className="space-y-10 px-0 md:px-10">
-                  <h4 className="text-sm font-semibold text-pink-500 text-center">A decentralized dead man&#x27;s switch built on Ethereum and Arweave.</h4>
-                </div>
-                <div className="space-x-5 px-10 cursor-pointer">
-                    <a target="_blank" rel="noreferrer" href="https://app.sarcophagus.io/archaeologists">
-                    <span className="md:inline-flex text-sm font-mono text-purple-500"><b>app.sarcophagus.io/archaeologists</b></span>
-                    </a>
-                </div>
-            </div>
+            
 
             <div className="cursor-auto w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen rounded-full">
                 <motion.img
@@ -182,6 +149,41 @@ export default function Projects({}: Props) {
                 <div className="space-x-5 px-10 cursor-pointer">
                     <a target="_blank" rel="noreferrer" href="https://polkadot.js.org/apps/?rpc=wss://rpc.tangle.tools#/accounts">
                     <span className="md:inline-flex text-sm font-mono text-purple-500"><b>Portal</b></span>
+                    </a>
+                </div>
+            </div>
+
+            <div className="cursor-auto w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen rounded-full">
+                <motion.img 
+                initial={{
+                    y: 100,
+                    opacity: 0,
+                }}
+                transition={{ duration: 1.2 }}
+                whileInView={{ opacity: 1, y: 0}}
+                className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
+                src="./pict/sarco.png" 
+                alt="sarco"/>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Sarcophagus</h3>
+                </div>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Mainnet &amp; Testnet Node Operator</h3>
+                </div>
+                <div className="flex items-center space-x-2 justify-center">
+                    <img className="h-7 w-7" src="./pict/copy.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/github.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/ubuntu.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/vim.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/docker.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/metamask.png" alt=""/>
+                </div>
+                <div className="space-y-10 px-0 md:px-10">
+                  <h4 className="text-sm font-semibold text-pink-500 text-center">A decentralized dead man&#x27;s switch built on Ethereum and Arweave.</h4>
+                </div>
+                <div className="space-x-5 px-10 cursor-pointer">
+                    <a target="_blank" rel="noreferrer" href="https://app.sarcophagus.io/archaeologists">
+                    <span className="md:inline-flex text-sm font-mono text-purple-500"><b>app.sarcophagus.io/archaeologists</b></span>
                     </a>
                 </div>
             </div>
