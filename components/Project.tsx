@@ -110,8 +110,8 @@ export default function Projects({}: Props) {
                     <h4 className="text-sm font-semibold text-pink-500 text-center">Avail is a modular blockchain with a data availability layer designed to scale blockchain networks</h4>
                 </div>
                 <div className="space-x-5 px-10 cursor-pointer">
-                    <a target="_blank" rel="noreferrer" href="https://goldberg.avail.tools/">
-                    <span className="md:inline-flex text-sm font-mono text-purple-500"><b>Avail Tools</b></span>
+                    <a target="_blank" rel="noreferrer" href="https://explorer.avail.so//#/accounts">
+                    <span className="md:inline-flex text-sm font-mono text-purple-500"><b>Portal</b></span>
                     </a>
                 </div>
             </div>
@@ -125,13 +125,13 @@ export default function Projects({}: Props) {
                 transition={{ duration: 1.2 }}
                 whileInView={{ opacity: 1, y: 0}}
                 className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
-                src="./pict/dym.png" 
-                alt="dym"/>
+                src="./pict/ctc.png" 
+                alt="ctc"/>
                 <div className="space-y-10 px-0 md:px-10">
-                    <h3 className="text-lg font-semibold text-pink-500 text-center">Dymension</h3>
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Creditcoin</h3>
                 </div>
                 <div className="space-y-10 px-0 md:px-10">
-                    <h3 className="text-lg font-semibold text-pink-500 text-center">RollApp Operator &amp; Validator</h3>
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Validator</h3>
                 </div>
                 <div className="flex items-center space-x-2 justify-center">
                     <img className="h-7 w-7" src="./pict/copy.png" alt=""/>
@@ -144,10 +144,10 @@ export default function Projects({}: Props) {
                     <img className="h-7 w-7" src="./pict/metamask.png" alt=""/>
                 </div>
                 <div className="space-y-10 px-0 md:px-10">
-                    <h4 className="text-sm font-semibold text-pink-500 text-center">Powering the Internet of RollApps</h4>
+                    <h4 className="text-sm font-semibold text-pink-500 text-center">Fastest growing #RWA blockchain with 5M+ loans recorded on-chain for 500k+ real-world customers 🚀</h4>
                 </div>
                 <div className="space-x-5 px-10 cursor-pointer">
-                    <a target="_blank" rel="noreferrer" href="https://portal.dymension.xyz/rollapp/megumii_6349524-1">
+                    <a target="_blank" rel="noreferrer" href="https://polkadot.js.org/apps/?rpc=wss://rpc.mainnet.creditcoin.network/ws#/accounts">
                     <span className="md:inline-flex text-sm font-mono text-purple-500"><b>Portal</b></span>
                     </a>
                 </div>
@@ -168,7 +168,7 @@ export default function Projects({}: Props) {
                     <h3 className="text-lg font-semibold text-pink-500 text-center">Tangle</h3>
                 </div>
                 <div className="space-y-10 px-0 md:px-10">
-                    <h3 className="text-lg font-semibold text-pink-500 text-center">Testnet Validator</h3>
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Validator</h3>
                 </div>
                 <div className="flex items-center space-x-2 justify-center">
                     <img className="h-7 w-7" src="./pict/copy.png" alt=""/>
@@ -180,8 +180,8 @@ export default function Projects({}: Props) {
                     <h4 className="text-sm font-semibold text-pink-500 text-center">Built on Substrate, Tangle Network empowers privacy-enhancing and governance-decentralized applications, incorporating cross-chain functionality, EVM compatibility, advanced governance systems, and ZK applications into a unified ecosystem.</h4>
                 </div>
                 <div className="space-x-5 px-10 cursor-pointer">
-                    <a target="_blank" rel="noreferrer" href="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc-archive.tangle.tools#/staking">
-                    <span className="md:inline-flex text-sm font-mono text-purple-500"><b>PolkadotJS</b></span>
+                    <a target="_blank" rel="noreferrer" href="https://polkadot.js.org/apps/?rpc=wss://rpc.tangle.tools#/accounts">
+                    <span className="md:inline-flex text-sm font-mono text-purple-500"><b>Portal</b></span>
                     </a>
                 </div>
             </div>
