@@ -19,9 +19,10 @@ export default function WorkExperience({}: Props) {
             Experience
         </h4>
         <div className='relative w-full flex overflow-x-scroll snap-x snap-mandatory  z-20 scrollbar scrollbar-track-pink-200 scrollbar-thumb-pink-500'>
-          <ExperienceCard2 />
+          
           <ExperienceCard />
           <ExperienceCard1 />
+      {/* <ExperienceCard2 /> */}
         </div>
         <div className='w-full absolute top-[30%] bg-pink-500/30 left-0 h-[300px] -skew-y-12 transform-gpu' />       
     </motion.div>
