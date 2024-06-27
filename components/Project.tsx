@@ -44,7 +44,7 @@ export default function Projects({}: Props) {
                     <h4 className="text-sm font-semibold text-pink-500 text-center">ar.io is a network of decentralized gateways and permanent domains for the Arweave ecosystem 🐘</h4>
                 </div>
                 <div className="space-x-5 px-10 cursor-pointer">
-                    <a target="_blank" rel="noreferrer" href="https://blessingway.xyz">
+                    <a target="_blank" rel="noreferrer" href="https://network-portal.app/gateways/xFK3NdQ1utoPQ2tXMgNKFn9oZGw0Tl4ihNo7JY5Ldnk">
                     <span className="md:inline-flex text-sm font-mono text-purple-500"><b>blessingway.xyz</b></span>
                     </a>
                 </div>
