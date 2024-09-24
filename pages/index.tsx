@@ -46,9 +46,9 @@ export default function Home( {}: Props ) {
       <section id="contact" className="snap-start">
         <ContactMe />
       </section>
-        <footer className='sticky bottom-3 md:text-center space-y-4 ml-5 text-sm'>
+      {/*  <footer className='sticky bottom-3 md:text-center space-y-4 ml-5 text-sm'>
           <span>Built with 💜&#65039; by the&nbsp;<a target="_blank" rel="noreferrer" href="https://arweave.net/UT3OV5u3JFgYkm3fWuvicKwYrfbWcar-Uo5gU3kmfZg"><strong><span className='text-purple-600'>Arweave</span></strong></a> community. Learn more at &nbsp;</span><a target="_blank" rel="noreferrer" href="https://arweave.org"><strong><span className='text-purple-600'>Arweave.org</span></strong></a>
-        </footer>
+        </footer> */}
     </div>
   )
 }

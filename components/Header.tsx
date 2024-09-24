@@ -35,18 +35,13 @@ export default function Header({}: Props) {
             fgColor='purple'
             bgColor='transparent'
             />
-            <SocialIcon network="linktree" url="https://link_megumii.blessingway.xyz"
+            <SocialIcon network="linktree" url="https://s.megumii.xyz"
             rel='noreferrer'
             target='_blank'
             fgColor='purple'
             bgColor='transparent'
             />
-            <SocialIcon network="slack" url="https://kessoku.xyz"
-            rel='noreferrer'
-            target='_blank'
-            fgColor='purple'
-            bgColor='transparent'
-            />                       
+                      
         </motion.div>
         <motion.div
         initial={{
