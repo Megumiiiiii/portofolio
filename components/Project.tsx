@@ -24,6 +24,39 @@ export default function Projects({}: Props) {
                 transition={{ duration: 1.2 }}
                 whileInView={{ opacity: 1, y: 0}}
                 className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
+                src="./pict/ika.png" 
+                alt="ar"/>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">IKA</h3>
+                </div>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h3 className="text-lg font-semibold text-pink-500 text-center">Permanent Testnet Validator(for now)</h3>
+                </div>
+                <div className="flex items-center space-x-2 justify-center">
+                    <img className="h-7 w-7" src="./pict/copy.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/github.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/ubuntu.png" alt=""/>
+                    <img className="h-7 w-7" src="./pict/vim.png" alt=""/>
+                </div>
+                <div className="space-y-10 px-0 md:px-10">
+                    <h4 className="text-sm font-semibold text-pink-500 text-center">The fastest parallel MPC network, launching on Sui</h4>
+                </div>
+                <div className="space-x-5 px-10 cursor-pointer">
+                    <a target="_blank" rel="noreferrer" href="">
+                    <span className="md:inline-flex text-sm font-mono text-purple-500"><b>ika-testnet-1.megumii.xyz:9184/metrics</b></span>
+                    </a>
+                </div>
+            </div>
+
+            <div className="cursor-auto w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen rounded-full">
+                <motion.img
+                initial={{
+                    y: 100,
+                    opacity: 0,
+                }} 
+                transition={{ duration: 1.2 }}
+                whileInView={{ opacity: 1, y: 0}}
+                className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center" 
                 src="./pict/ar.png" 
                 alt="ar"/>
                 <div className="space-y-10 px-0 md:px-10">
