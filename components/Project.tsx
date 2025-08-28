@@ -42,7 +42,7 @@ export default function Projects({}: Props) {
                     <h4 className="text-sm font-semibold text-pink-500 text-center">The fastest parallel MPC network, launching on Sui</h4>
                 </div>
                 <div className="space-x-5 px-10 cursor-pointer">
-                    <a rel="noreferrer" href="https://ika-validators.com/validator/0x1b8f21f0222b347f166178c99693c16b56844341a3c01a306483e61115cdaebf">
+                    <a target="_blank" rel="noreferrer" href="https://ika-validators.com/validator/0x1b8f21f0222b347f166178c99693c16b56844341a3c01a306483e61115cdaebf">
                     <span className="md:inline-flex text-sm font-mono text-purple-500"><b>ika-testnet-1.megumii.xyz</b></span>
                     </a>
                 </div>
