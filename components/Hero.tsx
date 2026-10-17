@@ -9,7 +9,7 @@ export default function Hero({ }: Props) {
     const [text, count] = useTypewriter({
         words: [
             '2027-Will-Becomes-Anime',
-            '1 + 1 > 2',
+     
         ],
         loop: true,
         deleteSpeed: 50,
