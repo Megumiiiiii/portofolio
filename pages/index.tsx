@@ -1,54 +1,60 @@
-import Head from 'next/head'
-//import Image from 'next/image'
-import Header from '../components/Header'
-import Hero from '../components/Hero'
-import About from '../components/About'
-import WorkExperience from '../components/WorkExperience'
-import ContactMe from '../components/ContactMe';
-import Projects from '../components/Project'
-//import Archive from '../components/Archive'
+import Head from "next/head";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
+import About from "../components/About";
+import WorkExperience from "../components/WorkExperience";
+import ContactMe from "../components/ContactMe";
+import Projects from "../components/Project";
 
-type Props = {}
+const title = "Megumii — Portfolio";
+const description =
+  "Megumii's portfolio: web3 contributor and node operator. Anime, rhythm games, and validators since 2022.";
+const siteUrl = "https://www.megumii.xyz/";
+const socialImage = "https://www.megumii.xyz/pr.png";
 
-export default function Home( {}: Props ) {
+export default function Home() {
   return (
-    <div className='bg-pink-200 text-pink-400 h-screen snap-y snap-mandatory overflow-y-scroll z-0 scrollbar-thin scrollbar-track-pink-200 scrollbar-thumb-pink-500/40'>
+    <div className="scroll-shell bg-pink-200 text-pink-900 h-screen snap-y snap-mandatory overflow-y-scroll">
       <Head>
-        <title>Megumii - Portofolio</title>
-        <meta name="description" content="My Portofolio" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <link rel="icon" href="/me.ico" />
-        <meta data-rh="true" property="og:image" content="/pr.png" />
-        <meta data-rh="true" name="twitter:image" content="/pr.png" />
+        <link rel="canonical" href={siteUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={socialImage} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1919" />
         <meta property="og:image:height" content="885" />
-        <meta property="og:image" content="/pr.png" />
-        <link rel="canonical" href="https://k.megumii.xyz" />
-        <meta name="Timestamp" content="2023-09-14T06:12:52.859Z" />
-        <meta name="Creator" content="xFK3NdQ1utoPQ2tXMgNKFn9oZGw0Tl4ihNo7JY5Ldnk" />
-        <meta property="og:url" content="ar://megumii" />
-        <meta name="keywords" content="personal website, portofolio, website pribadi, tentang saya, about me, megumii, about megumii, megumii katou" />
-        <meta name="twitter:card" content="summary_large_image" />     
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={socialImage} />
+        <meta
+          name="Creator"
+          content="xFK3NdQ1utoPQ2tXMgNKFn9oZGw0Tl4ihNo7JY5Ldnk"
+        />
       </Head>
       <Header />
-      <section id='hero' className='snap-center'>
-        <Hero />
-      </section>
-      <section id='about' className='snap-center'>
-        <About />
-      </section>
-      <section id='experience' className='snap-start'>
-        <WorkExperience />
-      </section>
-      <section id='project' className='snap-start'>
-        <Projects />
-      </section>
-      <section id="contact" className="snap-start">
-        <ContactMe />
-      </section>
-      {/*  <footer className='sticky bottom-3 md:text-center space-y-4 ml-5 text-sm'>
-          <span>Built with 💜&#65039; by the&nbsp;<a target="_blank" rel="noreferrer" href="https://arweave.net/UT3OV5u3JFgYkm3fWuvicKwYrfbWcar-Uo5gU3kmfZg"><strong><span className='text-purple-600'>Arweave</span></strong></a> community. Learn more at &nbsp;</span><a target="_blank" rel="noreferrer" href="https://arweave.org"><strong><span className='text-purple-600'>Arweave.org</span></strong></a>
-        </footer> */}
+      <main>
+        <section id="hero" className="snap-center">
+          <Hero />
+        </section>
+        <section id="about" className="snap-center">
+          <About />
+        </section>
+        <section id="experience" className="snap-start">
+          <WorkExperience />
+        </section>
+        <section id="project" className="snap-start">
+          <Projects />
+        </section>
+        <section id="contact" className="snap-start">
+          <ContactMe />
+        </section>
+      </main>
     </div>
-  )
+  );
 }

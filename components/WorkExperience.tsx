@@ -1,30 +1,24 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import ExperienceCard from './ExperienceCard'
-import ExperienceCard1 from './ExperienceCard1'
-import ExperienceCard2 from './ExperienceCard2'
-import { StarsCanvas } from "./canvas";
+import { motion } from "framer-motion";
+import CardCarousel from "./CardCarousel";
+import ExperienceCard from "./ExperienceCard";
+import ExperienceCard1 from "./ExperienceCard1";
 
-type Props = {}
-
-export default function WorkExperience({}: Props) {
+export default function WorkExperience() {
   return (
     <motion.div
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 1.5 }}
-    className='h-screen flex relative overflow-hidden flex-col text-justify md:flex-row max-w-full px-10 justify-center mx-auto items-center'>
-          <StarsCanvas />
-        <h4 className='absolute top-12 uppercase tracking-[10px] text-pink-500 font-serif text-1xl'>
-            Experience
-        </h4>
-        <div className='relative w-full flex overflow-x-scroll snap-x snap-mandatory  z-20 scrollbar scrollbar-track-pink-200 scrollbar-thumb-pink-500'>
-          
-          <ExperienceCard />
-          <ExperienceCard1 />
-      {/* <ExperienceCard2 /> */}
-        </div>
-        <div className='w-full absolute top-[30%] bg-pink-500/30 left-0 h-[300px] -skew-y-12 transform-gpu' />       
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className="starfield relative flex h-screen flex-col overflow-hidden"
+    >
+      <h2 className="section-kicker relative z-20 px-16 pt-20 sm:pt-24">
+        Experience
+      </h2>
+      <CardCarousel label="experience">
+        <ExperienceCard />
+        <ExperienceCard1 />
+      </CardCarousel>
+      <div className="pointer-events-none absolute top-[32%] left-0 z-0 h-[300px] w-full -skew-y-12 bg-pink-800/15" />
     </motion.div>
-  )
+  );
 }
