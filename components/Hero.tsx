@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
-import BackgroundCircles from "./BackgroundCircles";
 
 export default function Hero() {
   const [text] = useTypewriter({
@@ -13,7 +12,6 @@ export default function Hero() {
 
   return (
     <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
-      <BackgroundCircles />
       <Image
         className="relative rounded-full h-32 w-32 mx-auto object-cover"
         src="/pict/zz.webp"
