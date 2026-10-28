@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 type Tool = {
   src: string;
@@ -88,7 +89,12 @@ const nodes: NodeCard[] = [
 
 export default function Projects() {
   return (
-    <div className="starfield flex relative overflow-hidden flex-col text-left md:flex-row max-w-full h-screen justify-evenly mx-auto items-center z-0">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className="starfield flex relative overflow-hidden flex-col text-left md:flex-row max-w-full h-screen justify-evenly mx-auto items-center z-0"
+    >
       <h2 className="absolute top-24 uppercase tracking-[10px] text-pink-800 font-serif text-xl">
         Active Nodes
       </h2>
@@ -98,13 +104,19 @@ export default function Projects() {
             key={node.name}
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
           >
-            <Image
-              className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center object-contain"
-              src={node.logo}
-              alt={node.name}
-              width={200}
-              height={200}
-            />
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2 }}
+            >
+              <Image
+                className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-center object-contain"
+                src={node.logo}
+                alt={node.name}
+                width={200}
+                height={200}
+              />
+            </motion.div>
             <h3 className="text-lg font-semibold text-pink-900 text-center">
               {node.name}
             </h3>
@@ -139,6 +151,6 @@ export default function Projects() {
         ))}
       </div>
       <div className="w-full absolute top-[30%] bg-pink-800/15 left-0 h-[300px] skew-y-12" />
-    </div>
+    </motion.div>
   );
 }

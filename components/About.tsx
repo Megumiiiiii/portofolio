@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <div className="h-screen flex flex-col md:flex-row max-w-6xl px-8 gap-10 justify-center mx-auto items-center">
+    <div className="mx-auto flex h-screen max-w-7xl flex-col items-center justify-center gap-10 px-10 md:flex-row">
       <Image
         className="h-56 w-56 md:h-72 md:w-72 rounded-full object-cover shrink-0"
         src="/pict/zz-lg.webp"

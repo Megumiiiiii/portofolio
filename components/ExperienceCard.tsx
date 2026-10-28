@@ -1,15 +1,22 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function ExperienceCard() {
   return (
     <article className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
-      <Image
-        className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center"
-        src="/pict/findora.webp"
-        alt="Findora"
-        width={200}
-        height={200}
-      />
+      <motion.div
+        initial={{ y: -100, opacity: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2 }}
+      >
+        <Image
+          className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center"
+          src="/pict/findora.webp"
+          alt="Findora"
+          width={200}
+          height={200}
+        />
+      </motion.div>
       <h3 className="text-4xl font-semibold text-center text-pink-900">
         Findora
       </h3>
