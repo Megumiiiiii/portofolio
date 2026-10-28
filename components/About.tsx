@@ -4,9 +4,9 @@ export default function About() {
   return (
     <div className="h-screen flex flex-col md:flex-row max-w-6xl px-8 gap-10 justify-center mx-auto items-center">
       <Image
-        className="h-56 w-56 md:h-72 md:w-72 rounded-2xl object-cover shrink-0"
-        src="/pict/meg.webp"
-        alt="Illustration of Megumii"
+        className="h-56 w-56 md:h-72 md:w-72 rounded-full object-cover shrink-0"
+        src="/pict/zz-lg.webp"
+        alt="Megumii"
         width={288}
         height={288}
       />
