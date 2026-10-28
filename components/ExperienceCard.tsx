@@ -1,48 +1,52 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import Image from "next/image";
 
-type Props = {}
-
-export default function ExperienceCard({}: Props) {
+export default function ExperienceCard() {
   return (
-    <article className='cursor-pointer w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen rounded-lg'>                    
-        <motion.img
-        initial={{
-            y: -100,
-            opacity: 0,
-        }}
-        transition={{ duration: 1.2 }}
-        whileInView={{ opacity: 1, y: 0}}
-        className='w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center'
-        src='./pict/findora.png'
-        alt='fra'
-        />
-            <div>
-                <h3 className='text-4xl font-sans text-semibold md:text-center'>Findora</h3>
-            </div>
-            <div>
-                <h4 className='text-2xl font-mono md:text-center'>Moderator</h4>
-            </div>
-            <div>
-                <a target="_blank" rel="noreferrer" href="https://findora.org">
-                    <p className='text-purple-400'>About Findora</p>
-                </a>
-            </div>
-        <div className='px-0 md:px-2 items-center'>
-            <div className='flex space-x-2 justify-center items-center'>
-                <img className='h-10 w-10 space-x-2 justify-center rounded-full' src='./pict/discord.png' />
-                <img className='h-10 w-10 space-x-2 justify-center rounded-full' src='./pict/tele.png' />
-            </div>
-            <div>
-                <p className='py-5 font-serif text-pink-500'>
-                Thu Mar 10 2022 - Wed Apr 05 2023
-                </p>
-            </div>
-            <ul className='list-disc text-left object-left space-y-4 ml-5 text-sm'>
-                <li>First time joining as a testnet participant 💜</li>
-                <li>Moderate global and local community</li>
-            </ul>
+    <article className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
+      <Image
+        className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center"
+        src="/pict/findora.webp"
+        alt="Findora"
+        width={200}
+        height={200}
+      />
+      <h3 className="text-4xl font-semibold text-center text-pink-900">
+        Findora
+      </h3>
+      <p className="text-2xl font-mono text-center">Moderator</p>
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href="https://findora.org"
+        className="text-purple-800 underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-800"
+      >
+        About Findora
+      </a>
+      <div className="px-0 md:px-2">
+        <div className="flex space-x-2 justify-center items-center">
+          <Image
+            className="h-10 w-10 rounded-full"
+            src="/pict/discord.webp"
+            alt="Discord"
+            width={40}
+            height={40}
+          />
+          <Image
+            className="h-10 w-10 rounded-full"
+            src="/pict/tele.webp"
+            alt="Telegram"
+            width={40}
+            height={40}
+          />
         </div>
+        <p className="py-5 font-serif text-pink-800 text-center">
+          Thu Mar 10 2022 - Wed Apr 05 2023
+        </p>
+        <ul className="list-disc text-left space-y-4 ml-5 text-sm">
+          <li>First time joining as a testnet participant</li>
+          <li>Moderate global and local community</li>
+        </ul>
+      </div>
     </article>
-  )
+  );
 }

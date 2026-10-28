@@ -1,44 +1,63 @@
-import React from 'react'
-import { Cursor, useTypewriter } from 'react-simple-typewriter'
-import BackgroundCircles from './BackgroundCircles'
+import Image from "next/image";
+import { Cursor, useTypewriter } from "react-simple-typewriter";
+import BackgroundCircles from "./BackgroundCircles";
 
+export default function Hero() {
+  const [text] = useTypewriter({
+    words: ["2027-Will-Becomes-Anime"],
+    loop: true,
+    deleteSpeed: 50,
+    typeSpeed: 100,
+    delaySpeed: 2000,
+  });
 
-type Props = {};
-
-export default function Hero({ }: Props) {
-    const [text, count] = useTypewriter({
-        words: [
-            '2027-Will-Becomes-Anime',
-     
-        ],
-        loop: true,
-        deleteSpeed: 50,
-        typeSpeed: 100,
-        delaySpeed: 2000,
-    });
   return (
-    <div className='h-screen  flex flex-col space-y-8 items-center justify-center text-center overflow-hidden'>
-         <BackgroundCircles />
-         <img
-         className='relative rounded-full h-32 w-32 mx-auto object-cover'
-         src='./pict/zz.png'
-         alt='megumii'
-         />     
-         <div className='z-20'>
-            <h1 className='text-3xl lg:text-4xl font-semibold px-10'>
-                <span className='mr-1'>{text}</span>
-                <Cursor cursorColor='#FF00CB'
-                />
-            </h1>
-            <div className='px-5 grid grid-cols-3'>
-                <a href="#about" className='heroButton'>About</a>
-                <a href="https://learn.megumii.xyz" rel='noreferrer' target='_blank' className='heroButton'>Docs</a>
-                <a href="#experience" className='heroButton'>Experiences</a>
-                <a href="#contact" className='heroButton'>Contact</a>
-                <a href="" className='heroButton'>F5</a>
-                <a href="#project" className='heroButton'>Nodes</a>
-            </div>
-         </div>
+    <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
+      <BackgroundCircles />
+      <Image
+        className="relative rounded-full h-32 w-32 mx-auto object-cover"
+        src="/pict/zz.webp"
+        alt="Megumii"
+        width={128}
+        height={128}
+        priority
+      />
+      <div className="z-20">
+        <h1 className="text-4xl lg:text-5xl font-semibold text-pink-900">
+          Megumii
+        </h1>
+        <p className="mt-3 text-2xl lg:text-3xl font-medium text-pink-800 min-h-10">
+          <span className="mr-1" suppressHydrationWarning>
+            {text}
+          </span>
+          <Cursor cursorColor="#9d174d" />
+        </p>
+        <nav
+          aria-label="Page"
+          className="px-5 mt-6 flex flex-wrap justify-center gap-3"
+        >
+          <a href="#about" className="heroButton">
+            About
+          </a>
+          <a
+            href="https://learn.megumii.xyz"
+            rel="noreferrer"
+            target="_blank"
+            className="heroButton"
+          >
+            Docs
+          </a>
+          <a href="#experience" className="heroButton">
+            Experiences
+          </a>
+          <a href="#contact" className="heroButton">
+            Contact
+          </a>
+          <a href="#project" className="heroButton">
+            Nodes
+          </a>
+        </nav>
+      </div>
     </div>
-  )
+  );
 }

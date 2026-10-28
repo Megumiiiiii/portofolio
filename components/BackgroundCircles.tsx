@@ -1,26 +1,37 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from "framer-motion";
 
-type Props = {}
+export default function BackgroundCircles() {
+  const reduce = useReducedMotion();
 
-export default function BackgroundCircles({}: Props) {
   return (
-    <motion.div
-    initial={{
-        opacity: 0,
-    }}
-    animate={{
-        scale: [1, 2, 2, 3, 1],
-        opacity: [0.1, 0.2, 0.4, 0.8, 0.1, 1.0],
-        borderRadius: ['20%', '20%', '50%', '80%', '20%'],
-    }}
-    transition={{
-        duration: 2.5,
-    }}
-    className='relative flex justify-center items-center'>
-        <div className='absolute border border-pink-500 rounded-full h-[285px] w-[285px] mt-52 opacity-40 animate-ping' />
-        <div className='absolute border border-purple-500 rounded-full h-[580px] w-[580px] opacity-10 mt-52 animate-pulse' />
-       {/* <div className='absolute border border-pink-500 rounded-full h-[350px] w-[350px] mt-52 opacity-30 animate-ping' /> */}
-    </motion.div>
-  )
+    <div
+      className="relative flex justify-center items-center"
+      aria-hidden="true"
+    >
+      <motion.div
+        className="absolute rounded-full border border-pink-800 h-[285px] w-[285px] mt-52"
+        initial={false}
+        animate={
+          reduce
+            ? { opacity: 0.4, scale: 1 }
+            : { opacity: [0.35, 0.6, 0.35], scale: [1, 1.06, 1] }
+        }
+        transition={
+          reduce
+            ? { duration: 0 }
+            : { duration: 3.5, repeat: Infinity, ease: "easeInOut" }
+        }
+      />
+      <motion.div
+        className="absolute rounded-full border border-purple-800 h-[420px] w-[420px] md:h-[560px] md:w-[560px] mt-52"
+        initial={false}
+        animate={reduce ? { opacity: 0.25, scale: 1 } : { opacity: [0.2, 0.4, 0.2] }}
+        transition={
+          reduce
+            ? { duration: 0 }
+            : { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
+        }
+      />
+    </div>
+  );
 }

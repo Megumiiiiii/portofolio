@@ -1,9 +1,57 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer components {
-    .heroButton {
-        @apply px-6 py-2 border  border-pink-200 rounded-lg text-xs tracking-widest text-pink-500 transition-all hover:border-pink-400 hover:text-pink-200
-    }
+  .heroButton {
+    @apply px-6 py-2 border border-pink-800 rounded-lg text-xs tracking-widest text-pink-900 transition-colors hover:bg-pink-900 hover:text-pink-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-900;
+  }
+}
+
+.scroll-shell,
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(157 23 77 / 0.45) rgb(251 207 232);
+}
+
+.scroll-shell::-webkit-scrollbar,
+.thin-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scroll-shell::-webkit-scrollbar-track,
+.thin-scroll::-webkit-scrollbar-track {
+  background: rgb(251 207 232);
+}
+
+.scroll-shell::-webkit-scrollbar-thumb,
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: rgb(157 23 77 / 0.45);
+  border-radius: 999px;
+}
+
+.starfield {
+  background-color: rgb(251 207 232);
+  background-image:
+    radial-gradient(1.5px 1.5px at 24px 36px, rgb(131 24 67 / 0.55), transparent),
+    radial-gradient(1px 1px at 90px 140px, rgb(88 28 135 / 0.45), transparent),
+    radial-gradient(1.5px 1.5px at 150px 48px, rgb(157 23 77 / 0.4), transparent),
+    radial-gradient(1px 1px at 200px 180px, rgb(80 7 36 / 0.35), transparent),
+    radial-gradient(1.5px 1.5px at 60px 200px, rgb(107 33 168 / 0.4), transparent),
+    radial-gradient(1px 1px at 180px 90px, rgb(131 24 67 / 0.35), transparent);
+  background-size: 240px 240px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
