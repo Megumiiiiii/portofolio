@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
+import CardCarousel from "./CardCarousel";
 
 type Tool = {
   src: string;
@@ -93,16 +94,16 @@ export default function Projects() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="starfield flex relative overflow-hidden flex-col text-left md:flex-row max-w-full h-screen justify-evenly mx-auto items-center z-0"
+      className="starfield relative flex h-screen flex-col overflow-hidden"
     >
-      <h2 className="absolute top-24 uppercase tracking-[10px] text-pink-800 font-serif text-xl">
+      <h2 className="section-kicker relative z-20 px-16 pt-20 sm:pt-24">
         Active Nodes
       </h2>
-      <div className="thin-scroll relative w-full flex overflow-x-scroll snap-x snap-mandatory z-20">
+      <CardCarousel label="node">
         {nodes.map((node) => (
           <article
             key={node.name}
-            className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
+            className="flex w-full max-w-3xl flex-col items-center justify-center gap-4 text-center"
           >
             <motion.div
               initial={{ y: 100, opacity: 0 }}
@@ -136,21 +137,21 @@ export default function Projects() {
                 </li>
               ))}
             </ul>
-            <p className="text-sm font-semibold text-pink-900 text-center max-w-3xl">
+            <p className="max-w-full text-center text-sm font-semibold text-pink-900 break-words">
               {node.summary}
             </p>
             <a
               target="_blank"
               rel="noreferrer"
               href={node.href}
-              className="text-sm font-mono font-semibold text-purple-800 underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-800"
+              className="max-w-full break-all text-center text-sm font-mono font-semibold text-purple-800 underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-800"
             >
               {node.label}
             </a>
           </article>
         ))}
-      </div>
-      <div className="w-full absolute top-[30%] bg-pink-800/15 left-0 h-[300px] skew-y-12" />
+      </CardCarousel>
+      <div className="pointer-events-none absolute top-[32%] left-0 z-0 h-[300px] w-full skew-y-12 bg-pink-800/15" />
     </motion.div>
   );
 }

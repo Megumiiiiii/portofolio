@@ -29,6 +29,17 @@
   border-radius: 999px;
 }
 
+.section-kicker {
+  text-align: center;
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+  color: rgb(157 23 77);
+}
+
 .starfield {
   background-color: rgb(251 207 232);
   background-image:

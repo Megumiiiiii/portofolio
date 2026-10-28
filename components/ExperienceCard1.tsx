@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function ExperienceCard1() {
   return (
-    <article className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
+    <article className="flex w-full max-w-3xl flex-col items-center justify-center gap-4 text-center">
       <motion.div
         initial={{ y: -100, opacity: 0 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export default function ExperienceCard1() {
             height={40}
           />
         </div>
-        <p className="py-5 font-serif text-pink-800 text-center">
+        <p className="py-5 text-center font-serif text-pink-800 break-words">
           Fri Mar 17 2023 - Thu Feb 15 2024
         </p>
         <ul className="list-disc text-left space-y-4 ml-5 text-sm">
