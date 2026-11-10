@@ -15,8 +15,11 @@ on:
   push:
     branches: [main]
     paths:
+      # Deliberately not tools/profile/**: editing the generator would trigger
+      # a run that commits the regenerated art right back onto main, and the
+      # two commits race. Regenerate by hand (npm run card) when the code
+      # changes; the daily schedule keeps the numbers fresh.
       - "assets/**"
-      - "tools/profile/**"
       - ".github/workflows/card.yml"
 
 permissions:
