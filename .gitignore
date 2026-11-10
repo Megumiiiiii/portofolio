@@ -45,3 +45,4 @@ out-manifest.csv
 out-manifest.json
 out-id.txt
 record.mjs
+.env*
