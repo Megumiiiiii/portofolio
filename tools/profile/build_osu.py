@@ -133,7 +133,7 @@ def circle_group(clock: Clock, i: int, pt: tuple[float, float]) -> str:
 
     approach = (
         f'<circle cx="{x:g}" cy="{y:g}" r="{R * APPROACH_SCALE:.1f}" fill="none" '
-        f'stroke="{INK}" stroke-width="2" opacity="0">'
+        f'stroke="{INK}" stroke-width="2.6" opacity="0">'
         f'<animate attributeName="r" values="{R * APPROACH_SCALE:.1f};{R:.1f};{R:.1f}" '
         f'keyTimes="0;{clock.k(t_hit)};1" dur="{clock.total:.3f}s" '
         f'calcMode="linear" repeatCount="indefinite"/>'
@@ -169,7 +169,7 @@ def follow_points(pts: list[tuple[float, float]]) -> str:
         for f in (0.34, 0.66):
             out.append(
                 f'<circle cx="{x1 + (x2 - x1) * f:.1f}" cy="{y1 + (y2 - y1) * f:.1f}" '
-                f'r="3" fill="{INK_SOFT}" opacity="0.75"/>'
+                f'r="3.4" fill="{INK_SOFT}" opacity="0.9"/>'
             )
     return "".join(out)
 
@@ -199,11 +199,11 @@ def cursor(clock: Clock, pts: list[tuple[float, float]]) -> str:
                 f'begin="{lag:.3f}s" repeatCount="indefinite"/>')
 
     trail = "".join(
-        f'<g opacity="{0.34 / (j + 1):.2f}"><path d="{sprite_path(bitmap(CURSOR_SPRITE), 1.6, 1.6)}" '
+        f'<g opacity="{0.5 / (j + 1):.2f}"><path d="{sprite_path(bitmap(CURSOR_SPRITE), 1.9, 1.9)}" '
         f'fill="{INK_SOFT}"/>{move(0.05 * (j + 1))}</g>'
         for j in range(TRAIL)
     )
-    head = (f'<g><path d="{sprite_path(bitmap(CURSOR_SPRITE), 1.8, 1.8)}" fill="{CURSOR}" '
+    head = (f'<g><path d="{sprite_path(bitmap(CURSOR_SPRITE), 2.4, 2.4)}" fill="{CURSOR}" '
             f'stroke="#fff7fb" stroke-width="1.2"/>{move(0.0)}</g>')
     return trail + head
 
