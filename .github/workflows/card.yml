@@ -45,15 +45,20 @@ jobs:
         run: pip install requests
 
       - name: Fetch GitHub stats
-        # A bad repo or a GraphQL 502 must not block the card: fetch_stats.py
-        # skips the repo and the builders fall back to the last good cache.
-        # STATS_TOKEN (optional) is a PAT with read:user, needed for private
-        # contribution counts; the built-in token covers the public figures.
-        continue-on-error: true
+        # The built-in token only sees public repos, which understates the card
+        # (private repos and their lines of code are invisible to it). Run the
+        # fetch only when the repo has a STATS_TOKEN secret -- a PAT with
+        # read:user -- and otherwise keep the committed cache untouched, so the
+        # numbers never flip between the two definitions.
         env:
-          GITHUB_TOKEN: ${{ secrets.STATS_TOKEN || secrets.GITHUB_TOKEN }}
+          STATS_TOKEN: ${{ secrets.STATS_TOKEN }}
           GH_LOGIN: Megumiiiiii
-        run: python tools/profile/fetch_stats.py
+        run: |
+          if [ -n "$STATS_TOKEN" ]; then
+            GITHUB_TOKEN="$STATS_TOKEN" python tools/profile/fetch_stats.py
+          else
+            echo "::notice title=STATS_TOKEN missing::keeping cache/stats.json as committed"
+          fi
 
       - name: Fetch osu! stats
         # Pulled through a text mirror of the profile page; the numbers are a
