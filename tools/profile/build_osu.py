@@ -19,7 +19,7 @@ Usage:
 from __future__ import annotations
 
 import json
-import math
+import random
 from pathlib import Path
 
 from build_card import MARGIN, SITE_OUT, THEMES
@@ -41,18 +41,18 @@ OUTRO = 1.7                    # empty board, final combo on screen, before the 
 # --- Geometry (px) ----------------------------------------------------------
 R = 20                         # hit circle radius
 APPROACH_SCALE = 2.6           # approach ring starts this many radii out
-TRAIL = 4                      # cursor trail copies
 PLAY_TOP = 92                  # first pixel row of the playfield
 PLAY_BOTTOM = HEIGHT - 34
 
 SHOWN = 20                     # hit circles per loop: enough to read as a map
+SEED = 20260714                # fixed: the map is generated, not rerolled per build
+MIN_GAP = R * 2.55             # no two circles closer than this
 
 
 THEME = "transparent"
 C = THEMES[THEME]
 
 INK = C["key"]                 # site pink, used for text and strokes
-INK_SOFT = C["dots"]
 CURSOR = C["fg"]
 BURST = "#e6398b"              # osu! pink, for the hit explosion only
 
@@ -84,17 +84,33 @@ def hits(cal: dict) -> list[dict]:
 
 
 def positions(n: int) -> list[tuple[float, float]]:
-    """A playable-looking route: a wide wave, read left to right."""
+    """A scattered, fixed-seed layout -- real osu maps are irregular, not a wave.
+
+    Rejection sampling keeps every circle at least MIN_GAP away from the ones
+    already placed, so the board reads as jumpable patterns instead of a pile.
+    The seed is fixed because the SVG is committed: two builds of the same data
+    have to produce the same file.
+    """
     if n == 1:
-        return [(CANVAS_W / 2, HEIGHT - 90)]
-    left, right = MARGIN + R + 6, CANVAS_W - MARGIN - R - 6
-    mid = (PLAY_TOP + PLAY_BOTTOM) / 2
-    amp = (PLAY_BOTTOM - PLAY_TOP) / 2 - R - 4
-    pts = []
-    for i in range(n):
-        x = left + (right - left) * i / (n - 1)
-        y = mid - amp * math.sin(i * 0.92 + 0.5)
-        pts.append((round(x, 1), round(y, 1)))
+        return [(CANVAS_W / 2, (PLAY_TOP + PLAY_BOTTOM) / 2)]
+
+    rng = random.Random(SEED)
+    left, right = MARGIN + R + 8, CANVAS_W - MARGIN - R - 8
+    top, bottom = PLAY_TOP + R + 8, PLAY_BOTTOM - R - 6
+
+    pts: list[tuple[float, float]] = []
+    gap = MIN_GAP
+    for _ in range(n):
+        for _attempt in range(600):
+            x, y = rng.uniform(left, right), rng.uniform(top, bottom)
+            if all((x - px) ** 2 + (y - py) ** 2 >= gap ** 2 for px, py in pts):
+                pts.append((round(x, 1), round(y, 1)))
+                break
+        else:
+            # Board too crowded for this gap: loosen it and take the point, so
+            # the loop always terminates with n circles.
+            gap = max(gap * 0.85, R * 1.6)
+            pts.append((round(rng.uniform(left, right), 1), round(rng.uniform(top, bottom), 1)))
     return pts
 
 
@@ -163,17 +179,6 @@ def circle_group(clock: Clock, i: int, pt: tuple[float, float]) -> str:
     return approach + disc + burst
 
 
-def follow_points(pts: list[tuple[float, float]]) -> str:
-    out = []
-    for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
-        for f in (0.34, 0.66):
-            out.append(
-                f'<circle cx="{x1 + (x2 - x1) * f:.1f}" cy="{y1 + (y2 - y1) * f:.1f}" '
-                f'r="3.4" fill="{INK_SOFT}" opacity="0.9"/>'
-            )
-    return "".join(out)
-
-
 CURSOR_SPRITE = """
 ........#
 .......##
@@ -198,14 +203,9 @@ def cursor(clock: Clock, pts: list[tuple[float, float]]) -> str:
                 f'values="{values}" keyTimes="{times}" dur="{clock.total:.3f}s" '
                 f'begin="{lag:.3f}s" repeatCount="indefinite"/>')
 
-    trail = "".join(
-        f'<g opacity="{0.5 / (j + 1):.2f}"><path d="{sprite_path(bitmap(CURSOR_SPRITE), 1.9, 1.9)}" '
-        f'fill="{INK_SOFT}"/>{move(0.05 * (j + 1))}</g>'
-        for j in range(TRAIL)
-    )
     head = (f'<g><path d="{sprite_path(bitmap(CURSOR_SPRITE), 2.4, 2.4)}" fill="{CURSOR}" '
-            f'stroke="#fff7fb" stroke-width="1.2"/>{move(0.0)}</g>')
-    return trail + head
+            f'stroke="#fff7fb" stroke-width="1.4"/>{move(0.0)}</g>')
+    return head
 
 
 def combo_counter(clock: Clock) -> str:
@@ -213,31 +213,25 @@ def combo_counter(clock: Clock) -> str:
     out = []
     for i in range(clock.n):
         t = clock.hit(i)
+        # The label lives from its own hit until the next one, so the values
+        # never stack on top of each other.
+        t_next = clock.hit(i + 1) if i + 1 < clock.n else clock.done()
         out.append(
             f'<text x="{CANVAS_W - MARGIN}" y="{PLAY_TOP - 14}" text-anchor="end" '
             f'font-size="26" font-weight="bold" fill="{INK}" opacity="0">'
             f'x{i + 1}'
-            f'{hold(clock, [(0.0, False), (t, True), (clock.done(), i + 1 == clock.n), (clock.total, False)])}'
+            f'{hold(clock, [(0.0, False), (t, True), (t_next, i + 1 == clock.n), (clock.total, False)])}'
             f'</text>'
         )
     return "".join(out)
 
 
-def hud(cal: dict, osu: dict) -> str:
-    head = (
+def hud(osu: dict) -> str:
+    """Just the wordmark: rank / pp / accuracy / score deliberately omitted."""
+    return (
         f'<text x="{MARGIN}" y="34" font-size="26" font-weight="bold" fill="{INK}">osu!</text>'
         f'<text x="{MARGIN + 62}" y="34" font-size="18" fill="{C["fg"]}">{osu["user"]}</text>'
-        f'<text x="{MARGIN}" y="58" font-size="14" fill="{INK_SOFT}">'
-        f'#{osu["rank"]} global  ·  {osu["pp"]}pp  ·  {osu["accuracy"]} acc  ·  '
-        f'{cal["total"]} contributions</text>'
     )
-    right = (
-        f'<text x="{CANVAS_W - MARGIN}" y="34" text-anchor="end" font-size="14" '
-        f'fill="{INK_SOFT}">SCORE</text>'
-        f'<text x="{CANVAS_W - MARGIN}" y="60" text-anchor="end" font-size="22" '
-        f'font-weight="bold" fill="{C["fg"]}">{osu["total_score"]}</text>'
-    )
-    return head + right
 
 
 def build() -> str:
@@ -265,9 +259,8 @@ text, tspan {{white-space: pre;}}
 <defs>
   <clipPath id="play"><rect x="0" y="{PLAY_TOP - 24}" width="{CANVAS_W}" height="{HEIGHT - PLAY_TOP + 20}"/></clipPath>
 </defs>
-{hud(cal, osu)}
+{hud(osu)}
 <g clip-path="url(#play)">
-{follow_points(pts)}
 {circles}
 {cursor(clock, pts)}
 </g>
