@@ -229,8 +229,8 @@ def combo_counter(clock: Clock) -> str:
 def hud(osu: dict) -> str:
     """Just the wordmark: rank / pp / accuracy / score deliberately omitted."""
     return (
-        f'<text x="{MARGIN}" y="34" font-size="26" font-weight="bold" fill="{INK}">osu!</text>'
-        f'<text x="{MARGIN + 62}" y="34" font-size="18" fill="{C["fg"]}">{osu["user"]}</text>'
+        f'<text x="{MARGIN}" y="34" font-size="26" font-weight="bold" fill="{INK}">!</text>'
+       
     )
 
 
