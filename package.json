@@ -9,7 +9,8 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
-    "deploy": "yarn build && node deploy.mjs"
+    "deploy": "yarn build && node deploy.mjs",
+    "card": "python3 tools/profile/build_card.py && python3 tools/profile/build_pacman.py"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

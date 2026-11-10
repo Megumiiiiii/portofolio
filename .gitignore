@@ -46,3 +46,8 @@ out-manifest.json
 out-id.txt
 record.mjs
 .env*
+
+# profile card generator cache (memoised LOC walk, not an input)
+cache/loc.json
+__pycache__/
+*.pyc
