@@ -10,7 +10,8 @@
     "build": "next build",
     "lint": "eslint .",
     "deploy": "yarn build && node deploy.mjs",
-    "card": "python3 tools/profile/build_card.py && python3 tools/profile/build_pacman.py"
+    "card": "python3 tools/profile/build_card.py && python3 tools/profile/build_osu.py",
+    "card:fetch": "python3 tools/profile/fetch_stats.py && python3 tools/profile/fetch_osu.py"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

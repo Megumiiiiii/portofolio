@@ -1,0 +1,81 @@
+# Refreshes the two generated assets behind the site's about/contact sections:
+#   public/readme/card.svg  -- the neofetch-style profile card
+#   public/readme/osu.svg   -- the osu! board (hit circles per contributing day)
+#
+# Both are build outputs of tools/profile/, which is vendored from the profile
+# README generator. The numeric inputs land in cache/*.json, the SVGs in
+# public/readme/, and the commit is what makes Vercel redeploy.
+name: Refresh card
+
+on:
+  schedule:
+    # Once a day, 05:00 UTC (12:00 WIB).
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "assets/**"
+      - "tools/profile/**"
+      - ".github/workflows/card.yml"
+
+permissions:
+  contents: write
+
+# A scheduled run and a manual run overlapping would race on the same commit.
+concurrency:
+  group: profile-card
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The rebase below needs a real merge base, which a shallow clone lacks.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch GitHub stats
+        # A bad repo or a GraphQL 502 must not block the card: fetch_stats.py
+        # skips the repo and the builders fall back to the last good cache.
+        # STATS_TOKEN (optional) is a PAT with read:user, needed for private
+        # contribution counts; the built-in token covers the public figures.
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.STATS_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_LOGIN: Megumiiiiii
+        run: python tools/profile/fetch_stats.py
+
+      - name: Fetch osu! stats
+        # Pulled through a text mirror of the profile page; the numbers are a
+        # snapshot, so a failure keeps yesterday's cache/osu.json.
+        continue-on-error: true
+        env:
+          OSU_USER: "29234830"
+        run: python tools/profile/fetch_osu.py
+
+      - name: Rebuild card and board
+        run: |
+          python tools/profile/build_card.py
+          python tools/profile/build_osu.py
+
+      # main can move while the fetches run; both SVGs are deterministic build
+      # outputs, so replaying them on top of whatever landed is safe.
+      - name: Rebase onto any commits that landed meanwhile
+        run: git pull --rebase --autostash origin main
+
+      - name: Commit the regenerated art
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: refresh profile card and osu board"
+          branch: main
+          file_pattern: "public/readme/*.svg cache/*.json"

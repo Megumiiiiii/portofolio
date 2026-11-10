@@ -25,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[2]  # repo root (this file lives in tool
 ASCII_SRC = ROOT / "assets" / "ascii-art.txt"
 ASCII_SRC_LIGHT = ROOT / "assets" / "ascii-art-light.txt"
 STATS_SRC = ROOT / "cache" / "stats.json"
+OSU_SRC = ROOT / "cache" / "osu.json"
 
 BIRTHDATE = dt.date(2001, 7, 14)
 
@@ -113,8 +114,8 @@ INFO = [
 ]
 
 CONTACT = [
-    ("Discord", "discordapp.com/users/873803230042263563"),
-    ("Telegram", "KatouMegumii"),
+    ("Discord", "megumii.eth"),
+    ("Telegram", "@KatouMegumii"),
     ("Portfolio", "megumii.xyz"),
 ]
 
@@ -232,6 +233,14 @@ def load_stats() -> dict:
     return {k: f"{raw[k]:,}" if isinstance(raw.get(k), int) else blank[k] for k in blank}
 
 
+def load_osu() -> dict:
+    blank = {"accuracy": "--", "pp": "--", "total_score": "--", "rank": "--"}
+    if not OSU_SRC.exists():
+        return blank
+    raw = json.loads(OSU_SRC.read_text(encoding="utf-8"))
+    return {k: str(raw.get(k, blank[k])) for k in blank}
+
+
 def load_art(src: Path) -> list[str]:
     lines = src.read_text(encoding="utf-8").split("\n")
     filled = [i for i, line in enumerate(lines) if line.strip()]
@@ -298,6 +307,13 @@ def build_panel(x: int, y0: float) -> tuple[list[str], int]:
         .text(st["deleted"], cls="delColor", eid="loc_del")
         .text("--", cls="delColor").text(" )")
     )
+
+    osu = load_osu()
+    rows.append(None)
+    rows.append(rule_row("- osu! Stats"))
+    rows.append(info_row("Accuracy", osu["accuracy"]))
+    rows.append(info_row("PP", osu["pp"]))
+    rows.append(info_row("Total Score", osu["total_score"]))
 
     out = []
     for i, row in enumerate(rows):
