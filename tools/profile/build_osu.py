@@ -64,7 +64,7 @@ def load_calendar() -> dict:
 
 
 def load_osu() -> dict:
-    blank = {"user": "megumii", "rank": "--", "pp": "--", "accuracy": "--", "total_score": "--"}
+    blank = {"user": "--", "rank": "--", "pp": "--", "accuracy": "--", "total_score": "--"}
     if not OSU_SRC.exists():
         return blank
     raw = json.loads(OSU_SRC.read_text(encoding="utf-8"))
