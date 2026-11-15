@@ -25,7 +25,7 @@ const petals = Array.from({ length: PETAL_COUNT }, (_, i) => {
   const r = (k: number) => seeded(i * 7 + k);
   return {
     left: `${(r(1) * 100).toFixed(2)}%`,
-    size: 10 + Math.round(r(2) * 12), // 10-22px across
+    size: 12 + Math.round(r(2) * 12), // 12-24px across
     duration: 12 + r(3) * 10, // 12-22s to cross the viewport
     // Negative delays drop petals mid-air instead of all starting at the top.
     delay: -r(4) * 22,
