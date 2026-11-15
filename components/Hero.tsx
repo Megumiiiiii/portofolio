@@ -28,7 +28,7 @@ export default function Hero() {
           <span className="mr-1" suppressHydrationWarning>
             {text}
           </span>
-          <Cursor cursorColor="#9d174d" />
+          <Cursor cursorColor="var(--sub)" />
         </p>
         <nav
           aria-label="Page"

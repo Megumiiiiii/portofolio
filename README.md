@@ -13,6 +13,21 @@ yarn dev
 
 #
 
+## Light and dark mode
+
+Pink is the light theme, deep purple (`#1B1032`) the dark one. Components only
+speak in `pink-*` / `purple-*` utilities; `styles/globals.css` remaps those names
+to semantic variables (`--bg`, `--surface`, `--ink`, `--sub`, `--accent`) and
+swaps the values under `[data-theme="dark"]`. Retuning a mode means editing five
+values there, not chasing colours through components.
+
+- The default follows the OS through `prefers-color-scheme`; the header toggle
+  writes `data-theme` on `<html>` and stores the choice in `localStorage`, which
+  `pages/_document.tsx` replays before first paint so there is no flash.
+- The generated art ships **one file per mode** — `card.svg` / `card-dark.svg`
+  and `osu.svg` / `osu-dark.svg` — because the SVGs carry real colours, not a
+  CSS filter. `.only-light` / `.only-dark` decide which one is painted.
+
 ## About / contact art
 
 `public/readme/card.svg` and `public/readme/osu.svg` are generated, not hand

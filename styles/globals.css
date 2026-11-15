@@ -1,5 +1,122 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Two modes, one palette.
+
+   Components only ever speak in pink/purple utility classes; those names are
+   remapped here to semantic variables, so flipping `data-theme` on <html>
+   repaints the whole site without touching a section. Pink is the light mode,
+   deep purple (#1B1032) the dark one.
+
+   Light is the default and dark follows the OS through prefers-color-scheme;
+   an explicit data-theme="light" | "dark" -- set by the header toggle, and
+   replayed from localStorage before paint -- wins over the media query.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-pink-100: var(--surface);
+  --color-pink-200: var(--bg);
+  --color-pink-800: var(--sub);
+  --color-pink-900: var(--ink);
+  --color-purple-800: var(--accent);
+}
+
+:root {
+  color-scheme: light;
+
+  --bg: #fbcfe8;          /* page */
+  --surface: #fce7f3;     /* raised card */
+  --ink: #831843;         /* body text */
+  --sub: #9d174d;         /* headings, muted text */
+  --accent: #6b21a8;      /* icons, links */
+
+  --scroll-track: rgb(251 207 232);
+  --scroll-thumb: rgb(157 23 77 / 0.45);
+  --star-1: rgb(131 24 67 / 0.55);
+  --star-2: rgb(88 28 135 / 0.45);
+  --star-3: rgb(157 23 77 / 0.4);
+  --star-4: rgb(80 7 36 / 0.35);
+  --star-5: rgb(107 33 168 / 0.4);
+  --star-6: rgb(131 24 67 / 0.35);
+
+  --only-light: block;
+  --only-dark: none;
+}
+
+/* Dark: deep purple. These five values retune the entire mode. */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #1b1032;
+  --surface: #2a1a42;
+  --ink: #f3e9ff;
+  --sub: #d8b4fe;
+  --accent: #c084fc;
+
+  --scroll-track: rgb(27 16 50);
+  --scroll-thumb: rgb(216 180 254 / 0.45);
+  --star-1: rgb(233 213 255 / 0.75);
+  --star-2: rgb(192 132 252 / 0.55);
+  --star-3: rgb(216 180 254 / 0.6);
+  --star-4: rgb(168 85 247 / 0.45);
+  --star-5: rgb(147 197 253 / 0.5);
+  --star-6: rgb(233 213 255 / 0.5);
+
+  --only-light: none;
+  --only-dark: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --bg: #1b1032;
+    --surface: #2a1a42;
+    --ink: #f3e9ff;
+    --sub: #d8b4fe;
+    --accent: #c084fc;
+
+    --scroll-track: rgb(27 16 50);
+    --scroll-thumb: rgb(216 180 254 / 0.45);
+    --star-1: rgb(233 213 255 / 0.75);
+    --star-2: rgb(192 132 252 / 0.55);
+    --star-3: rgb(216 180 254 / 0.6);
+    --star-4: rgb(168 85 247 / 0.45);
+    --star-5: rgb(147 197 253 / 0.5);
+    --star-6: rgb(233 213 255 / 0.5);
+
+    --only-light: none;
+    --only-dark: block;
+  }
+}
+
+/* An explicit "light" wins even on a dark OS. */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #fbcfe8;
+  --surface: #fce7f3;
+  --ink: #831843;
+  --sub: #9d174d;
+  --accent: #6b21a8;
+
+  --only-light: block;
+  --only-dark: none;
+}
+
+/* The generated art ships one SVG per mode; only one is ever painted. */
+.only-light {
+  display: var(--only-light);
+}
+
+.only-dark {
+  display: var(--only-dark);
+}
+
+html,
+body {
+  background-color: var(--bg);
+}
+
 @layer components {
   .heroButton {
     @apply px-6 py-2 border border-pink-800 rounded-lg text-xs tracking-widest text-pink-900 transition-colors hover:bg-pink-900 hover:text-pink-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-900;
@@ -9,7 +126,7 @@
 .scroll-shell,
 .thin-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgb(157 23 77 / 0.45) rgb(251 207 232);
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
 }
 
 .scroll-shell::-webkit-scrollbar,
@@ -20,12 +137,12 @@
 
 .scroll-shell::-webkit-scrollbar-track,
 .thin-scroll::-webkit-scrollbar-track {
-  background: rgb(251 207 232);
+  background: var(--scroll-track);
 }
 
 .scroll-shell::-webkit-scrollbar-thumb,
 .thin-scroll::-webkit-scrollbar-thumb {
-  background: rgb(157 23 77 / 0.45);
+  background: var(--scroll-thumb);
   border-radius: 999px;
 }
 
@@ -37,18 +154,18 @@
   text-transform: uppercase;
   letter-spacing: 0.35em;
   text-indent: 0.35em;
-  color: rgb(157 23 77);
+  color: var(--sub);
 }
 
 .starfield {
-  background-color: rgb(251 207 232);
+  background-color: var(--bg);
   background-image:
-    radial-gradient(1.5px 1.5px at 24px 36px, rgb(131 24 67 / 0.55), transparent),
-    radial-gradient(1px 1px at 90px 140px, rgb(88 28 135 / 0.45), transparent),
-    radial-gradient(1.5px 1.5px at 150px 48px, rgb(157 23 77 / 0.4), transparent),
-    radial-gradient(1px 1px at 200px 180px, rgb(80 7 36 / 0.35), transparent),
-    radial-gradient(1.5px 1.5px at 60px 200px, rgb(107 33 168 / 0.4), transparent),
-    radial-gradient(1px 1px at 180px 90px, rgb(131 24 67 / 0.35), transparent);
+    radial-gradient(1.5px 1.5px at 24px 36px, var(--star-1), transparent),
+    radial-gradient(1px 1px at 90px 140px, var(--star-2), transparent),
+    radial-gradient(1.5px 1.5px at 150px 48px, var(--star-3), transparent),
+    radial-gradient(1px 1px at 200px 180px, var(--star-4), transparent),
+    radial-gradient(1.5px 1.5px at 60px 200px, var(--star-5), transparent),
+    radial-gradient(1px 1px at 180px 90px, var(--star-6), transparent);
   background-size: 240px 240px;
 }
 

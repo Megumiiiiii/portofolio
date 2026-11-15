@@ -51,3 +51,6 @@ record.mjs
 cache/loc.json
 __pycache__/
 *.pyc
+
+# npm artifacts (this project ships a yarn.lock; Vercel builds with yarn)
+package-lock.json

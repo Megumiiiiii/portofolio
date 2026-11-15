@@ -109,7 +109,7 @@ text, tspan {white-space: pre;}
 <text fill="#24292f" font-size="16px">
 <tspan x="447" y="101.575"><tspan class="title">megumii</tspan> -————————————————————————————————————————————————-</tspan>
 <tspan x="447" y="121.575"><tspan class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc"> </tspan><tspan class="cc">.....................................</tspan><tspan class="cc"> </tspan><tspan class="value">Windows, Linux</tspan></tspan>
-<tspan x="447" y="141.575"><tspan class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc"> </tspan><tspan class="cc">.....................</tspan><tspan class="cc"> </tspan><tspan class="value" id="age_data">25 years, 4 months, 0 days</tspan></tspan>
+<tspan x="447" y="141.575"><tspan class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc"> </tspan><tspan class="cc">......................</tspan><tspan class="cc"> </tspan><tspan class="value" id="age_data">25 years, 4 months, 1 day</tspan></tspan>
 <tspan x="447" y="161.575"><tspan class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc"> </tspan><tspan class="cc">.........................................</tspan><tspan class="cc"> </tspan><tspan class="value">Neptunus</tspan></tspan>
 <tspan x="447" y="181.575"><tspan class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc"> </tspan><tspan class="cc">....................................</tspan><tspan class="cc"> </tspan><tspan class="value">VSCode, Cursor</tspan></tspan>
 <tspan x="447" y="201.575" class="cc">.</tspan>

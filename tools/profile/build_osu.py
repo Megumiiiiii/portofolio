@@ -49,10 +49,10 @@ SEED = 20260714                # fixed: the map is generated, not rerolled per b
 MIN_GAP = R * 2.55             # no two circles closer than this
 
 
-THEME = "transparent"
+THEME = "transparent"          # rebound by build(theme)
 C = THEMES[THEME]
 
-INK = C["key"]                 # site pink, used for text and strokes
+INK = C["key"]                 # site accent, used for text and strokes
 CURSOR = C["fg"]
 BURST = "#e6398b"              # osu! pink, for the hit explosion only
 
@@ -159,7 +159,7 @@ def circle_group(clock: Clock, i: int, pt: tuple[float, float]) -> str:
 
     disc = (
         f'<g opacity="1">'
-        f'<circle cx="{x:g}" cy="{y:g}" r="{R}" fill="{C["bg"] if C["bg"] != "transparent" else "#fff7fb"}" '
+        f'<circle cx="{x:g}" cy="{y:g}" r="{R}" fill="{C.get("circle", "#fff7fb")}" '
         f'stroke="{INK}" stroke-width="3"/>'
         f'<text x="{x:g}" y="{y + 5.5:g}" text-anchor="middle" font-size="15" '
         f'font-weight="bold" fill="{INK}">{i + 1}</text>'
@@ -204,7 +204,7 @@ def cursor(clock: Clock, pts: list[tuple[float, float]]) -> str:
                 f'begin="{lag:.3f}s" repeatCount="indefinite"/>')
 
     head = (f'<g><path d="{sprite_path(bitmap(CURSOR_SPRITE), 2.4, 2.4)}" fill="{CURSOR}" '
-            f'stroke="#fff7fb" stroke-width="1.4"/>{move(0.0)}</g>')
+            f'stroke="{C.get('circle', '#fff7fb')}" stroke-width="1.4"/>{move(0.0)}</g>')
     return head
 
 
@@ -234,7 +234,14 @@ def hud(osu: dict) -> str:
     )
 
 
-def build() -> str:
+def build(theme: str = "transparent") -> str:
+    """Render the board for one theme; the site ships a file per mode."""
+    global THEME, C, INK, CURSOR
+    THEME = theme
+    C = THEMES[theme]
+    INK = C["key"]
+    CURSOR = C["fg"]
+
     cal = load_calendar()
     osu = load_osu()
     days = hits(cal)
@@ -276,11 +283,12 @@ def main() -> None:
     print(f"months    : {cal['total']} contributions, {len(days)} hit circles shown")
     print(f"osu       : #{osu['rank']} · {osu['pp']}pp · {osu['accuracy']} · score {osu['total_score']}")
     SITE_OUT.mkdir(parents=True, exist_ok=True)
-    svg = build()
-    checked = validate_smil(svg)
-    out = SITE_OUT / "osu.svg"
-    out.write_text(svg, encoding="utf-8")
-    print(f"wrote {out} ({out.stat().st_size:,} bytes, {checked} animations validated)")
+    for theme, name in (("transparent", "osu.svg"), ("dark", "osu-dark.svg")):
+        svg = build(theme)
+        checked = validate_smil(svg)
+        out = SITE_OUT / name
+        out.write_text(svg, encoding="utf-8")
+        print(f"wrote {out} ({out.stat().st_size:,} bytes, {checked} animations validated)")
 
 
 if __name__ == "__main__":

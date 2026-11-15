@@ -92,6 +92,17 @@ THEMES = {
         "green": "#1a7f37", "telegram": "#0088cc", "discord": "#4752C4",
         "pac": "#EAB308",
     },
+    # Deep purple counterpart for the site's dark mode. Same transparent plate,
+    # but the ink is light and the level ramps blend towards the dark surface.
+    "dark": {
+        "art_src": ASCII_SRC_LIGHT,
+        "bg": "transparent", "mix_base": "#2a1a42",
+        "fg": "#e9dcff", "art": "#e9dcff",
+        "key": "#c084fc", "value": "#93c5fd",
+        "add": "#4ade80", "del": "#f87171", "dots": "#6b5b86",
+        "green": "#4ade80", "telegram": "#38bdf8", "discord": "#8b9dff",
+        "pac": "#EAB308", "circle": "#efe6ff",
+    },
 }
 
 # Where the portfolio site consumes the generated art.
@@ -410,13 +421,13 @@ def main() -> None:
     print(f"uptime      : {uptime()}")
     print(f"stats       : {'cache/stats.json' if STATS_SRC.exists() else 'not fetched yet (placeholders)'}")
 
-    # The site consumes only the transparent card: no white plate, no dark
-    # variant. GitHub's own README keeps the light/dark pair from this folder's
-    # upstream copy.
+    # The site consumes two cards, one per mode, both without a background
+    # plate; the CSS picks whichever matches the active theme.
     SITE_OUT.mkdir(parents=True, exist_ok=True)
-    out = SITE_OUT / "card.svg"
-    out.write_text(build("transparent"), encoding="utf-8")
-    print(f"wrote {out} ({out.stat().st_size:,} bytes)")
+    for theme, name in (("transparent", "card.svg"), ("dark", "card-dark.svg")):
+        out = SITE_OUT / name
+        out.write_text(build(theme), encoding="utf-8")
+        print(f"wrote {out} ({out.stat().st_size:,} bytes)")
 
 
 if __name__ == "__main__":
