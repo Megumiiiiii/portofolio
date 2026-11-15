@@ -166,7 +166,7 @@ body {
 /* ---------------------------------------------------------------------------
    Animated background
 
-   One fixed layer behind the content: soft drifting clouds in light mode, small
+   One fixed layer behind the content: falling sakura petals in light mode, small
    twinkling stars in dark. Only the layer matching the theme is painted, and
    every animation is transform/opacity only, so it composites off the main
    thread. No JS, nothing to hydrate.
@@ -179,59 +179,42 @@ body {
   pointer-events: none;
 }
 
-.bg-clouds,
+.bg-petals,
 .bg-stars {
   position: absolute;
   inset: 0;
 }
 
-.cloud {
+/* Sakura: one petal per span, each with its own fall speed, drift and size
+   handed in as custom properties from the component. */
+.petal {
   position: absolute;
-  border-radius: 50%;
+  top: -12vh;
+  width: var(--size, 14px);
+  height: calc(var(--size, 14px) * 0.78);
+  background: linear-gradient(140deg, #fffdfe 0%, #ffe4f1 55%, #ffb0d2 100%);
+  /* One square corner against three round ones reads as a petal. */
+  border-radius: 100% 0 100% 0;
+  box-shadow: inset 0 0 3px rgb(255 255 255 / 0.9), 0 1px 4px rgb(247 154 193 / 0.28);
   will-change: transform;
 }
 
-/* Big, very soft blobs; the gradient does the blurring, so no filter cost. */
-.cloud-1 {
-  top: 4%;
-  left: -18vw;
-  width: 52vw;
-  height: 26vh;
-  background: radial-gradient(closest-side, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0) 70%);
+/* Three pink shades so the fall does not look like one flat colour. */
+.petal:nth-child(3n) {
+  background: linear-gradient(140deg, #ffffff 0%, #ffeaf4 55%, #ffc2dd 100%);
 }
 
-.cloud-2 {
-  top: 26%;
-  left: 40vw;
-  width: 44vw;
-  height: 22vh;
-  background: radial-gradient(closest-side, rgb(255 236 248 / 0.9), rgb(255 236 248 / 0) 72%);
+.petal:nth-child(4n) {
+  background: linear-gradient(140deg, #fff6fb 0%, #ffd9ea 55%, #f9a8ca 100%);
 }
 
-.cloud-3 {
-  bottom: 10%;
-  left: -10vw;
-  width: 48vw;
-  height: 24vh;
-  background: radial-gradient(closest-side, rgb(255 255 255 / 0.8), rgb(255 255 255 / 0) 68%);
+.petal:nth-child(5n) {
+  border-radius: 100% 0 100% 0;
+  filter: blur(0.3px);
 }
 
-.cloud-4 {
-  top: 52%;
-  left: 62vw;
-  width: 40vw;
-  height: 20vh;
-  background: radial-gradient(closest-side, rgb(255 228 245 / 0.85), rgb(255 228 245 / 0) 70%);
-}
 
-.cloud-5 {
-  top: -6%;
-  left: 22vw;
-  width: 36vw;
-  height: 18vh;
-  background: radial-gradient(closest-side, rgb(255 255 255 / 0.7), rgb(255 255 255 / 0) 66%);
-}
-
+/* Stars: three repeating dot layers at different depths. */
 .star-field {
   position: absolute;
   inset: -25%;
@@ -302,24 +285,8 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .cloud-1 {
-    animation: cloud-drift-1 110s ease-in-out infinite;
-  }
-
-  .cloud-2 {
-    animation: cloud-drift-2 140s ease-in-out infinite;
-  }
-
-  .cloud-3 {
-    animation: cloud-drift-3 165s ease-in-out infinite;
-  }
-
-  .cloud-4 {
-    animation: cloud-drift-4 125s ease-in-out infinite;
-  }
-
-  .cloud-5 {
-    animation: cloud-drift-5 190s ease-in-out infinite;
+  .petal {
+    animation: petal-fall var(--dur, 16s) linear var(--delay, 0s) infinite;
   }
 
   .star-far {
@@ -347,53 +314,21 @@ body {
   }
 }
 
-@keyframes cloud-drift-1 {
-  0%,
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -14vh, 0) rotate(0deg);
+  }
+  22% {
+    transform: translate3d(calc(4vw * var(--drift, 1)), 18vh, 0) rotate(calc(110deg * var(--spin, 1)));
+  }
+  48% {
+    transform: translate3d(calc(-3.2vw * var(--drift, 1)), 46vh, 0) rotate(calc(205deg * var(--spin, 1)));
+  }
+  72% {
+    transform: translate3d(calc(3vw * var(--drift, 1)), 74vh, 0) rotate(calc(290deg * var(--spin, 1)));
+  }
   100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(12vw, -2vh, 0) scale(1.08);
-  }
-}
-
-@keyframes cloud-drift-2 {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1.05);
-  }
-  50% {
-    transform: translate3d(-14vw, 3vh, 0) scale(0.95);
-  }
-}
-
-@keyframes cloud-drift-3 {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(9vw, -3vh, 0) scale(1.12);
-  }
-}
-
-@keyframes cloud-drift-4 {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-10vw, 4vh, 0) scale(1.06);
-  }
-}
-
-@keyframes cloud-drift-5 {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(0.98);
-  }
-  50% {
-    transform: translate3d(7vw, 5vh, 0) scale(1.1);
+    transform: translate3d(calc(-2.2vw * var(--drift, 1)), 114vh, 0) rotate(calc(380deg * var(--spin, 1)));
   }
 }
 
