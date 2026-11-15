@@ -185,34 +185,46 @@ body {
   inset: 0;
 }
 
-/* Sakura: each petal is an inline SVG with a real petal silhouette -- the
-   notched tip, a soft centre vein and two side veins -- used as a background
-   image, so the shape stays crisp at any size. Fall, drift and spin come from
-   the custom properties the component hands in. */
+/* Sakura. Each petal is an inline SVG with a real petal silhouette -- notched
+   tip, centre vein and four side veins -- used as a background image so the
+   shape stays crisp at any size.
+
+   The outer span only falls (translate + a slight sway); the inner .petal-body
+   carries the art and its own slow spin, so the two motions never fight over
+   the same transform. */
 .petal {
   position: absolute;
   top: 0;
   width: var(--size, 14px);
   height: calc(var(--size, 14px) * 1.28);
+  /* perspective lets the flipping petals turn in 3D instead of squashing flat */
+  perspective: 420px;
+  transform: translate3d(0, var(--y, 40vh), 0) rotate(var(--rot, 15deg));
+  will-change: transform;
+}
+
+.petal-body {
+  display: block;
+  width: 100%;
+  height: 100%;
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 130'><defs><linearGradient id='g' x1='0.15' y1='0' x2='0.6' y2='1'><stop offset='0' stop-color='%23fff2f8'/><stop offset='0.5' stop-color='%23ffc6de'/><stop offset='1' stop-color='%23f9a3c8'/></linearGradient></defs><path d='M50 126 C40 120 26 100 18 74 C12 54 10 40 12 32 C20 12 34 6 44 14 C47 18 49 26 50 34 C51 26 53 18 56 14 C66 6 80 12 88 32 C90 40 88 54 82 74 C74 100 60 120 50 126 Z' fill='url(%23g)' fill-opacity='0.96' stroke='%23e56aa0' stroke-opacity='0.28' stroke-width='1.4'/><path d='M50 122 C50 96 50 66 50 40' stroke='%23ffffff' stroke-opacity='0.5' stroke-width='2.6' fill='none' stroke-linecap='round'/><path d='M50 92 C42 84 34 78 28 74 M50 92 C58 84 66 78 72 74 M50 62 C44 56 38 52 34 49 M50 62 C56 56 62 52 66 49' stroke='%23ffffff' stroke-opacity='0.3' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   /* drop-shadow follows the outline; box-shadow would draw a rectangle */
   filter: drop-shadow(0 1px 3px rgb(214 51 108 / 0.16));
-  transform: translate3d(0, var(--y, 40vh), 0) rotate(var(--rot, 15deg));
   will-change: transform;
 }
 
 /* Three colourways: pale blossom, standard pink, deeper rose. */
-.petal:nth-child(3n) {
+.petal:nth-child(3n) .petal-body {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 130'><defs><linearGradient id='g' x1='0.15' y1='0' x2='0.6' y2='1'><stop offset='0' stop-color='%23ffdcec'/><stop offset='0.5' stop-color='%23ffa9cf'/><stop offset='1' stop-color='%23ec76ae'/></linearGradient></defs><path d='M50 126 C40 120 26 100 18 74 C12 54 10 40 12 32 C20 12 34 6 44 14 C47 18 49 26 50 34 C51 26 53 18 56 14 C66 6 80 12 88 32 C90 40 88 54 82 74 C74 100 60 120 50 126 Z' fill='url(%23g)' fill-opacity='0.96' stroke='%23d94d8d' stroke-opacity='0.28' stroke-width='1.4'/><path d='M50 122 C50 96 50 66 50 40' stroke='%23ffffff' stroke-opacity='0.5' stroke-width='2.6' fill='none' stroke-linecap='round'/><path d='M50 92 C42 84 34 78 28 74 M50 92 C58 84 66 78 72 74 M50 62 C44 56 38 52 34 49 M50 62 C56 56 62 52 66 49' stroke='%23ffffff' stroke-opacity='0.3' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>");
 }
 
-.petal:nth-child(4n) {
+.petal:nth-child(4n) .petal-body {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 130'><defs><linearGradient id='g' x1='0.15' y1='0' x2='0.6' y2='1'><stop offset='0' stop-color='%23ffc2db'/><stop offset='0.5' stop-color='%23fa87ba'/><stop offset='1' stop-color='%23d9558f'/></linearGradient></defs><path d='M50 126 C40 120 26 100 18 74 C12 54 10 40 12 32 C20 12 34 6 44 14 C47 18 49 26 50 34 C51 26 53 18 56 14 C66 6 80 12 88 32 C90 40 88 54 82 74 C74 100 60 120 50 126 Z' fill='url(%23g)' fill-opacity='0.96' stroke='%23c23c78' stroke-opacity='0.28' stroke-width='1.4'/><path d='M50 122 C50 96 50 66 50 40' stroke='%23ffffff' stroke-opacity='0.5' stroke-width='2.6' fill='none' stroke-linecap='round'/><path d='M50 92 C42 84 34 78 28 74 M50 92 C58 84 66 78 72 74 M50 62 C44 56 38 52 34 49 M50 62 C56 56 62 52 66 49' stroke='%23ffffff' stroke-opacity='0.3' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>");
 }
 
-.petal:nth-child(6n) {
+.petal:nth-child(6n) .petal-body {
   filter: blur(0.4px) drop-shadow(0 1px 3px rgb(214 51 108 / 0.14));
 }
 
@@ -291,6 +303,15 @@ body {
     animation: petal-fall var(--dur, 16s) linear var(--delay, 0s) infinite;
   }
 
+  .petal-body {
+    animation: petal-spin var(--spin-dur, 12s) linear infinite;
+  }
+
+  /* Declared after .petal-body so it wins for the flipping third. */
+  .petal-flip {
+    animation-name: petal-flip;
+  }
+
   .star-far {
     animation: star-twinkle 9s ease-in-out infinite alternate, star-drift 320s linear infinite;
   }
@@ -320,17 +341,40 @@ body {
   0% {
     transform: translate3d(0, -14vh, 0) rotate(0deg);
   }
-  22% {
-    transform: translate3d(calc(4vw * var(--drift, 1)), 18vh, 0) rotate(calc(110deg * var(--spin, 1)));
+  25% {
+    transform: translate3d(calc(3.4vw * var(--drift, 1)), 24vh, 0) rotate(calc(6deg * var(--spin, 1)));
   }
-  48% {
-    transform: translate3d(calc(-3.2vw * var(--drift, 1)), 46vh, 0) rotate(calc(205deg * var(--spin, 1)));
+  50% {
+    transform: translate3d(calc(-2.8vw * var(--drift, 1)), 52vh, 0) rotate(calc(-5deg * var(--spin, 1)));
   }
-  72% {
-    transform: translate3d(calc(3vw * var(--drift, 1)), 74vh, 0) rotate(calc(290deg * var(--spin, 1)));
+  75% {
+    transform: translate3d(calc(3vw * var(--drift, 1)), 80vh, 0) rotate(calc(7deg * var(--spin, 1)));
   }
   100% {
-    transform: translate3d(calc(-2.2vw * var(--drift, 1)), 114vh, 0) rotate(calc(380deg * var(--spin, 1)));
+    transform: translate3d(calc(-2vw * var(--drift, 1)), 114vh, 0) rotate(0deg);
+  }
+}
+
+/* Slow spin on the petal's own plane... */
+@keyframes petal-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(calc(360deg * var(--spin, 1)));
+  }
+}
+
+/* ...and the version that turns the petal over as it falls. */
+@keyframes petal-flip {
+  0% {
+    transform: rotateY(0deg) rotate(0deg);
+  }
+  50% {
+    transform: rotateY(180deg) rotate(calc(18deg * var(--spin, 1)));
+  }
+  100% {
+    transform: rotateY(360deg) rotate(0deg);
   }
 }
 
@@ -365,6 +409,11 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* A still sky is calmer with 20 petals than with the full 30. */
+  .petal-extra {
+    display: none;
+  }
+
   html {
     scroll-behavior: auto;
   }

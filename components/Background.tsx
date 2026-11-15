@@ -9,7 +9,15 @@
  * in JS, so the page stays a static export.
  */
 
+/** Petals in the air when the fall is running. */
 const PETAL_COUNT = 30;
+
+/**
+ * Petals kept when the visitor turned animations off. The other ten are dropped
+ * by CSS (`prefers-reduced-motion: reduce`), so a still sky is calmer instead of
+ * being as dense as a moving one.
+ */
+const PETAL_STATIC_COUNT = 20;
 
 /**
  * Deterministic pseudo-random in [0, 1): the petals have to be identical on the
@@ -23,6 +31,7 @@ function seeded(i: number): number {
 
 const petals = Array.from({ length: PETAL_COUNT }, (_, i) => {
   const r = (k: number) => seeded(i * 7 + k);
+  const spinSpeed = r(10);
   return {
     left: `${(r(1) * 100).toFixed(2)}%`,
     size: 12 + Math.round(r(2) * 12), // 12-24px across
@@ -37,6 +46,12 @@ const petals = Array.from({ length: PETAL_COUNT }, (_, i) => {
     // instead of piled above the fold where nobody would see them.
     y: `${(r(8) * 100).toFixed(2)}vh`,
     rot: `${Math.round(r(9) * 360)}deg`,
+    // A third of them turn over as they fall (a flat petal flipping on its own
+    // axis), the rest just spin on the plane. Slower petals get 9-18s per turn.
+    flip: r(11) > 0.66,
+    spinDuration: (9 + spinSpeed * 9).toFixed(2),
+    // Anything past the static budget is hidden when animations are off.
+    extra: i >= PETAL_STATIC_COUNT,
   };
 });
 
@@ -47,7 +62,7 @@ export default function Background() {
         {petals.map((p, i) => (
           <span
             key={i}
-            className="petal"
+            className={`petal${p.extra ? " petal-extra" : ""}`}
             style={
               {
                 left: p.left,
@@ -59,9 +74,12 @@ export default function Background() {
                 "--spin": p.spin,
                 "--y": p.y,
                 "--rot": p.rot,
+                "--spin-dur": `${p.spinDuration}s`,
               } as React.CSSProperties
             }
-          />
+          >
+            <span className={`petal-body${p.flip ? " petal-flip" : ""}`} />
+          </span>
         ))}
       </div>
       <div className="bg-stars only-dark">
