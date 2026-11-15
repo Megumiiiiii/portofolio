@@ -283,7 +283,7 @@ def main() -> None:
     print(f"months    : {cal['total']} contributions, {len(days)} hit circles shown")
     print(f"osu       : #{osu['rank']} · {osu['pp']}pp · {osu['accuracy']} · score {osu['total_score']}")
     SITE_OUT.mkdir(parents=True, exist_ok=True)
-    for theme, name in (("transparent", "osu.svg"), ("dark", "osu-dark.svg")):
+    for theme, name in (("transparent", "osu.svg"), ("purple", "osu-dark.svg")):
         svg = build(theme)
         checked = validate_smil(svg)
         out = SITE_OUT / name

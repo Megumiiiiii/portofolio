@@ -94,8 +94,12 @@ THEMES = {
     },
     # Deep purple counterpart for the site's dark mode. Same transparent plate,
     # but the ink is light and the level ramps blend towards the dark surface.
-    "dark": {
-        "art_src": ASCII_SRC_LIGHT,
+    # Key is "purple", not "dark": upstream already owns "dark" (the GitHub
+    # README variant) and a duplicate key would silently shadow it.
+    # ASCII_SRC is the art drawn for light ink on a dark plate; the *_LIGHT file
+    # is the denser one that only reads well as dark ink on a pale page.
+    "purple": {
+        "art_src": ASCII_SRC,
         "bg": "transparent", "mix_base": "#2a1a42",
         "fg": "#e9dcff", "art": "#e9dcff",
         "key": "#c084fc", "value": "#93c5fd",
@@ -424,7 +428,7 @@ def main() -> None:
     # The site consumes two cards, one per mode, both without a background
     # plate; the CSS picks whichever matches the active theme.
     SITE_OUT.mkdir(parents=True, exist_ok=True)
-    for theme, name in (("transparent", "card.svg"), ("dark", "card-dark.svg")):
+    for theme, name in (("transparent", "card.svg"), ("purple", "card-dark.svg")):
         out = SITE_OUT / name
         out.write_text(build(theme), encoding="utf-8")
         print(f"wrote {out} ({out.stat().st_size:,} bytes)")
