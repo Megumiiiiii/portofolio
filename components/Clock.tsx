@@ -10,6 +10,14 @@ import { useEffect, useState } from "react";
 
 const TICKS = Array.from({ length: 12 }, (_, i) => i);
 
+/** The four numbers a wall clock actually needs to be read at a glance. */
+const NUMBERS = [
+  { label: "12", angle: 0 },
+  { label: "3", angle: 90 },
+  { label: "6", angle: 180 },
+  { label: "9", angle: 270 },
+];
+
 /** Clock angles in degrees, 0 = 12 o'clock. */
 function angles(now: Date) {
   const seconds = now.getSeconds();
@@ -44,6 +52,19 @@ export default function Clock() {
   return (
     <div className="clock" role="img" aria-label={label} title={label}>
       <svg viewBox="0 0 100 100" aria-hidden="true">
+        {NUMBERS.map(({ label, angle }) => (
+          <text
+            key={label}
+            className="clock-number"
+            x={50 + 33 * Math.sin((angle * Math.PI) / 180)}
+            y={50 - 33 * Math.cos((angle * Math.PI) / 180)}
+            textAnchor="middle"
+            dominantBaseline="central"
+          >
+            {label}
+          </text>
+        ))}
+
         {TICKS.map((i) => {
           const major = i % 3 === 0;
           return (

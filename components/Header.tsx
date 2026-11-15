@@ -23,7 +23,7 @@ function toggleTheme() {
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-30 flex w-full items-start justify-between p-5 xl:items-center">
+    <header className="sticky top-0 z-30 flex w-full items-start justify-between p-5">
       <motion.nav
         aria-label="Social"
         initial={{ x: -500, opacity: 0, scale: 0.5 }}

@@ -210,6 +210,14 @@ body {
   stroke-width: 3.2;
 }
 
+.clock .clock-number {
+  fill: var(--sub);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  opacity: 0.85;
+}
+
 .clock .hand {
   stroke-linecap: round;
 }
