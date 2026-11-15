@@ -158,15 +158,273 @@ body {
 }
 
 .starfield {
-  background-color: var(--bg);
+  /* Deliberately transparent: the fixed background layer owns the sky now, so
+     the stars keep drifting behind the experience and contact sections. */
+  background-color: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   Animated background
+
+   One fixed layer behind the content: soft drifting clouds in light mode, small
+   twinkling stars in dark. Only the layer matching the theme is painted, and
+   every animation is transform/opacity only, so it composites off the main
+   thread. No JS, nothing to hydrate.
+--------------------------------------------------------------------------- */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-clouds,
+.bg-stars {
+  position: absolute;
+  inset: 0;
+}
+
+.cloud {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+/* Big, very soft blobs; the gradient does the blurring, so no filter cost. */
+.cloud-1 {
+  top: 4%;
+  left: -18vw;
+  width: 52vw;
+  height: 26vh;
+  background: radial-gradient(closest-side, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0) 70%);
+}
+
+.cloud-2 {
+  top: 26%;
+  left: 40vw;
+  width: 44vw;
+  height: 22vh;
+  background: radial-gradient(closest-side, rgb(255 236 248 / 0.9), rgb(255 236 248 / 0) 72%);
+}
+
+.cloud-3 {
+  bottom: 10%;
+  left: -10vw;
+  width: 48vw;
+  height: 24vh;
+  background: radial-gradient(closest-side, rgb(255 255 255 / 0.8), rgb(255 255 255 / 0) 68%);
+}
+
+.cloud-4 {
+  top: 52%;
+  left: 62vw;
+  width: 40vw;
+  height: 20vh;
+  background: radial-gradient(closest-side, rgb(255 228 245 / 0.85), rgb(255 228 245 / 0) 70%);
+}
+
+.cloud-5 {
+  top: -6%;
+  left: 22vw;
+  width: 36vw;
+  height: 18vh;
+  background: radial-gradient(closest-side, rgb(255 255 255 / 0.7), rgb(255 255 255 / 0) 66%);
+}
+
+.star-field {
+  position: absolute;
+  inset: -25%;
+  will-change: opacity, transform;
+}
+
+/* Three depths of small stars: the nearer the layer, the bigger and brighter. */
+.star-far {
   background-image:
-    radial-gradient(1.5px 1.5px at 24px 36px, var(--star-1), transparent),
-    radial-gradient(1px 1px at 90px 140px, var(--star-2), transparent),
-    radial-gradient(1.5px 1.5px at 150px 48px, var(--star-3), transparent),
-    radial-gradient(1px 1px at 200px 180px, var(--star-4), transparent),
-    radial-gradient(1.5px 1.5px at 60px 200px, var(--star-5), transparent),
-    radial-gradient(1px 1px at 180px 90px, var(--star-6), transparent);
-  background-size: 240px 240px;
+    radial-gradient(1px 1px at 12px 24px, rgb(255 255 255 / 0.75), transparent),
+    radial-gradient(1px 1px at 68px 132px, rgb(233 213 255 / 0.6), transparent),
+    radial-gradient(1px 1px at 118px 58px, rgb(255 255 255 / 0.55), transparent),
+    radial-gradient(1px 1px at 154px 196px, rgb(216 180 254 / 0.6), transparent),
+    radial-gradient(1px 1px at 206px 96px, rgb(255 255 255 / 0.5), transparent),
+    radial-gradient(1px 1px at 44px 218px, rgb(255 255 255 / 0.45), transparent),
+    radial-gradient(1px 1px at 232px 164px, rgb(233 213 255 / 0.5), transparent),
+    radial-gradient(1px 1px at 96px 8px, rgb(255 255 255 / 0.4), transparent);
+  background-size: 260px 260px;
+}
+
+.star-mid {
+  background-image:
+    radial-gradient(1.6px 1.6px at 36px 74px, rgb(255 255 255 / 0.95), transparent),
+    radial-gradient(1.6px 1.6px at 148px 22px, rgb(243 233 255 / 0.9), transparent),
+    radial-gradient(1.6px 1.6px at 92px 168px, rgb(255 255 255 / 0.85), transparent),
+    radial-gradient(1.6px 1.6px at 214px 128px, rgb(216 180 254 / 0.85), transparent),
+    radial-gradient(1.6px 1.6px at 268px 62px, rgb(255 255 255 / 0.8), transparent),
+    radial-gradient(1.6px 1.6px at 176px 244px, rgb(233 213 255 / 0.8), transparent);
+  background-size: 340px 340px;
+}
+
+.star-near {
+  background-image:
+    radial-gradient(2.2px 2.2px at 58px 118px, rgb(255 255 255 / 1), transparent),
+    radial-gradient(2.2px 2.2px at 202px 36px, rgb(255 255 255 / 0.95), transparent),
+    radial-gradient(2.2px 2.2px at 132px 232px, rgb(243 233 255 / 0.95), transparent),
+    radial-gradient(2.2px 2.2px at 300px 176px, rgb(255 255 255 / 0.9), transparent);
+  background-size: 440px 440px;
+}
+
+/* A few brighter stars with a soft halo, pulsing out of phase. */
+.glow-star {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 255 255 / 1) 0%, rgb(233 213 255 / 0.85) 35%, transparent 70%);
+  box-shadow: 0 0 12px 3px rgb(216 180 254 / 0.55);
+}
+
+.glow-star-1 {
+  top: 18%;
+  left: 22%;
+}
+
+.glow-star-2 {
+  top: 62%;
+  left: 74%;
+  width: 5px;
+  height: 5px;
+}
+
+.glow-star-3 {
+  top: 78%;
+  left: 34%;
+  width: 4px;
+  height: 4px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cloud-1 {
+    animation: cloud-drift-1 110s ease-in-out infinite;
+  }
+
+  .cloud-2 {
+    animation: cloud-drift-2 140s ease-in-out infinite;
+  }
+
+  .cloud-3 {
+    animation: cloud-drift-3 165s ease-in-out infinite;
+  }
+
+  .cloud-4 {
+    animation: cloud-drift-4 125s ease-in-out infinite;
+  }
+
+  .cloud-5 {
+    animation: cloud-drift-5 190s ease-in-out infinite;
+  }
+
+  .star-far {
+    animation: star-twinkle 9s ease-in-out infinite alternate, star-drift 320s linear infinite;
+  }
+
+  .star-mid {
+    animation: star-twinkle 6.5s ease-in-out -2s infinite alternate, star-drift 240s linear infinite reverse;
+  }
+
+  .star-near {
+    animation: star-twinkle 4.5s ease-in-out -1s infinite alternate, star-drift 180s linear infinite;
+  }
+
+  .glow-star-1 {
+    animation: star-pulse 5s ease-in-out infinite;
+  }
+
+  .glow-star-2 {
+    animation: star-pulse 6.5s ease-in-out -1.8s infinite;
+  }
+
+  .glow-star-3 {
+    animation: star-pulse 4.2s ease-in-out -0.7s infinite;
+  }
+}
+
+@keyframes cloud-drift-1 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(12vw, -2vh, 0) scale(1.08);
+  }
+}
+
+@keyframes cloud-drift-2 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-14vw, 3vh, 0) scale(0.95);
+  }
+}
+
+@keyframes cloud-drift-3 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(9vw, -3vh, 0) scale(1.12);
+  }
+}
+
+@keyframes cloud-drift-4 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-10vw, 4vh, 0) scale(1.06);
+  }
+}
+
+@keyframes cloud-drift-5 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.98);
+  }
+  50% {
+    transform: translate3d(7vw, 5vh, 0) scale(1.1);
+  }
+}
+
+@keyframes star-twinkle {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes star-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-90px, 60px, 0);
+  }
+}
+
+@keyframes star-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import WorkExperience from "../components/WorkExperience";
 import ContactMe from "../components/ContactMe";
+import Background from "../components/Background";
 import Projects from "../components/Project";
 
 const title = "Megumii — Portfolio";
@@ -37,8 +38,11 @@ export default function Home() {
           content="xFK3NdQ1utoPQ2tXMgNKFn9oZGw0Tl4ihNo7JY5Ldnk"
         />
       </Head>
-      <Header />
-      <main>
+      <Background />
+      {/* Everything interactive sits above the fixed background layer. */}
+      <div className="relative z-10">
+        <Header />
+        <main>
         <section id="hero" className="snap-center">
           <Hero />
         </section>
@@ -54,7 +58,8 @@ export default function Home() {
         <section id="contact" className="snap-start">
           <ContactMe />
         </section>
-      </main>
+        </main>
+      </div>
     </div>
   );
 }
