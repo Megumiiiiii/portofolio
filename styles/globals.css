@@ -189,7 +189,10 @@ body {
    handed in as custom properties from the component. */
 .petal {
   position: absolute;
-  top: -12vh;
+  top: 0;
+  /* Static resting place, used whenever the fall is not running (reduced
+     motion) so the sky still reads as sakura instead of an empty page. */
+  transform: translate3d(0, var(--y, 40vh), 0) rotate(var(--rot, 15deg));
   width: var(--size, 14px);
   height: calc(var(--size, 14px) * 0.78);
   background: linear-gradient(140deg, #fffdfe 0%, #ffe4f1 55%, #ffb0d2 100%);

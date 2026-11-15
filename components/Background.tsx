@@ -9,7 +9,7 @@
  * in JS, so the page stays a static export.
  */
 
-const PETAL_COUNT = 18;
+const PETAL_COUNT = 30;
 
 /**
  * Deterministic pseudo-random in [0, 1): the petals have to be identical on the
@@ -32,6 +32,11 @@ const petals = Array.from({ length: PETAL_COUNT }, (_, i) => {
     drift: (0.6 + r(5) * 1.4).toFixed(2),
     opacity: (0.55 + r(6) * 0.4).toFixed(2),
     spin: r(7) > 0.5 ? 1 : -1,
+    // Where the petal sits when it is not animating (reduced-motion visitors
+    // and the first frame before the fall starts): scattered over the page
+    // instead of piled above the fold where nobody would see them.
+    y: `${(r(8) * 100).toFixed(2)}vh`,
+    rot: `${Math.round(r(9) * 360)}deg`,
   };
 });
 
@@ -52,6 +57,8 @@ export default function Background() {
                 "--delay": `${p.delay.toFixed(2)}s`,
                 "--drift": p.drift,
                 "--spin": p.spin,
+                "--y": p.y,
+                "--rot": p.rot,
               } as React.CSSProperties
             }
           />
