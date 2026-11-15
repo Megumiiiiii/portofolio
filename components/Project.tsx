@@ -97,7 +97,7 @@ export default function Projects() {
       className="starfield relative flex h-screen flex-col overflow-hidden"
     >
       <h2 className="section-kicker relative z-20 px-16 pt-20 sm:pt-24">
-        Active Nodes
+        Historical
       </h2>
       <CardCarousel label="node">
         {nodes.map((node) => (

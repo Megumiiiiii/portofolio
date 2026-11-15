@@ -29,6 +29,7 @@
   --sub: #9d174d;         /* headings, muted text */
   --accent: #6b21a8;      /* icons, links */
 
+  --clock-second: #d6336c;
   --scroll-track: rgb(251 207 232);
   --scroll-thumb: rgb(157 23 77 / 0.45);
   --star-1: rgb(131 24 67 / 0.55);
@@ -52,6 +53,7 @@
   --sub: #d8b4fe;
   --accent: #c084fc;
 
+  --clock-second: #f9a8d4;
   --scroll-track: rgb(27 16 50);
   --scroll-thumb: rgb(216 180 254 / 0.45);
   --star-1: rgb(233 213 255 / 0.75);
@@ -75,6 +77,7 @@
     --sub: #d8b4fe;
     --accent: #c084fc;
 
+    --clock-second: #f9a8d4;
     --scroll-track: rgb(27 16 50);
     --scroll-thumb: rgb(216 180 254 / 0.45);
     --star-1: rgb(233 213 255 / 0.75);
@@ -98,6 +101,7 @@
   --ink: #831843;
   --sub: #9d174d;
   --accent: #6b21a8;
+  --clock-second: #d6336c;
 
   --only-light: block;
   --only-dark: none;
@@ -161,6 +165,72 @@ body {
   /* Deliberately transparent: the fixed background layer owns the sky now, so
      the stars keep drifting behind the experience and contact sections. */
   background-color: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+   Header wall clock
+
+   Analog, on the visitor's own device time. Colours come from the theme
+   variables, so it flips with the rest of the page; the face is translucent so
+   the sakura keeps falling behind it.
+--------------------------------------------------------------------------- */
+.clock {
+  width: 58px;
+  height: 58px;
+  padding: 3px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--sub) 50%, transparent);
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  box-shadow: 0 2px 12px rgb(214 51 108 / 0.14), inset 0 0 8px rgb(255 255 255 / 0.25);
+  backdrop-filter: blur(3px);
+}
+
+@media (min-width: 768px) {
+  .clock {
+    width: 76px;
+    height: 76px;
+    padding: 4px;
+  }
+}
+
+.clock svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.clock .tick {
+  stroke: color-mix(in srgb, var(--sub) 45%, transparent);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.clock .tick-major {
+  stroke: var(--sub);
+  stroke-width: 3.2;
+}
+
+.clock .hand {
+  stroke-linecap: round;
+}
+
+.clock .hand-hour {
+  stroke: var(--ink);
+  stroke-width: 5.5;
+}
+
+.clock .hand-minute {
+  stroke: var(--sub);
+  stroke-width: 3.6;
+}
+
+.clock .hand-second {
+  stroke: var(--clock-second);
+  stroke-width: 1.9;
+}
+
+.clock .pin {
+  fill: var(--accent);
 }
 
 /* ---------------------------------------------------------------------------
