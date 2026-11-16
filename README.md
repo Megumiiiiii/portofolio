@@ -37,8 +37,13 @@ extra `transparent` theme so no white plate is drawn behind the art):
 
 - **card.svg** — neofetch card: system rows, contact, GitHub stats, osu! stats.
   Rendered in the about section. Both themes draw the detailed halftone portrait
-  in `assets/ascii-art-detail.txt` (269x298, four levels of ink); only the ink
-  colour changes between light and dark.
+  in `assets/ascii-art-detail*.txt` (269x298). Light draws the dense dark-ink
+  file, dark the sparse light-ink one.
+
+To rebuild the portrait from a picture, `tools/profile/make_ascii.py IMAGE OUT`
+keys the background out (alpha channel first, edge flood-fill as a fallback) and
+writes the grid; a source that already has a transparent background gives a
+character floating on the page instead of a rectangle of ink.
 - **osu.svg** — the osu! board: one hit circle per contributing day, approach
   circle, cursor + trail, follow points, and a HUD with the live-ish profile
   figures (rank, pp, accuracy, total score) and a combo counter. Rendered at the
