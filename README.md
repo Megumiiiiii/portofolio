@@ -36,7 +36,9 @@ drawn, from the same generator that renders the profile README at
 extra `transparent` theme so no white plate is drawn behind the art):
 
 - **card.svg** — neofetch card: system rows, contact, GitHub stats, osu! stats.
-  Rendered in the about section.
+  Rendered in the about section. Both themes draw the detailed halftone portrait
+  in `assets/ascii-art-detail.txt` (269x298, four levels of ink); only the ink
+  colour changes between light and dark.
 - **osu.svg** — the osu! board: one hit circle per contributing day, approach
   circle, cursor + trail, follow points, and a HUD with the live-ish profile
   figures (rank, pp, accuracy, total score) and a combo counter. Rendered at the

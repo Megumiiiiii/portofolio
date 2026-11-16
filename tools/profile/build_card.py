@@ -23,6 +23,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]  # repo root (this file lives in tools/profile)
 ASCII_SRC = ROOT / "assets" / "ascii-art.txt"
+# Detailed halftone portrait used by both site themes (light and purple).
+ASCII_SRC_DETAIL = ROOT / "assets" / "ascii-art-detail.txt"
 ASCII_SRC_LIGHT = ROOT / "assets" / "ascii-art-light.txt"
 STATS_SRC = ROOT / "cache" / "stats.json"
 OSU_SRC = ROOT / "cache" / "osu.json"
@@ -84,7 +86,7 @@ THEMES = {
     # towards instead of the (absent) plate -- a soft rose that reads as an
     # "empty cell" on the portfolio's pink-200 background.
     "transparent": {
-        "art_src": ASCII_SRC_LIGHT,
+        "art_src": ASCII_SRC_DETAIL,
         "bg": "transparent", "mix_base": "#efd8e3",
         "fg": "#24292f", "art": "#24292f",
         "key": "#D6336C", "value": "#0550ae",
@@ -99,7 +101,7 @@ THEMES = {
     # ASCII_SRC is the art drawn for light ink on a dark plate; the *_LIGHT file
     # is the denser one that only reads well as dark ink on a pale page.
     "purple": {
-        "art_src": ASCII_SRC,
+        "art_src": ASCII_SRC_DETAIL,
         "bg": "transparent", "mix_base": "#2a1a42",
         "fg": "#e9dcff", "art": "#e9dcff",
         "key": "#c084fc", "value": "#93c5fd",
