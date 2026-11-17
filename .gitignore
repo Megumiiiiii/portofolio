@@ -54,3 +54,6 @@ __pycache__/
 
 # npm artifacts (this project ships a yarn.lock; Vercel builds with yarn)
 # package-lock.json committed: npm is the lockfile here (yarn.lock retired)
+
+# ario-deploy local cache
+.ario-deploy/
