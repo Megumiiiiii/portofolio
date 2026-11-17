@@ -9,31 +9,27 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
-    "deploy": "yarn build && node deploy.mjs",
     "card": "python3 tools/profile/build_card.py && python3 tools/profile/build_osu.py",
     "card:fetch": "python3 tools/profile/fetch_stats.py && python3 tools/profile/fetch_osu.py"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "framer-motion": "^14.7.1",
-    "next": "^16.4.3",
+    "next": "^16.4.6",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-simple-typewriter": "^5.0.1",
     "react-social-icons": "^6.27.0"
   },
   "devDependencies": {
-    "@irys/sdk": "^0.0.4",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^22.19.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "arweave": "^1.14.4",
-    "eslint": "^10.13.0",
-    "eslint-config-next": "^16.4.3",
+    "eslint": "^10.15.0",
+    "eslint-config-next": "^16.4.6",
     "postcss": "^8.5.32",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3",
-    "warp-contracts": "^1.4.22"
+    "typescript": "^5.9.3"
   }
 }

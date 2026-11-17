@@ -10,6 +10,10 @@ import { useEffect, useState } from "react";
 
 const TICKS = Array.from({ length: 12 }, (_, i) => i);
 
+// Rendered before the clock has read the device time. A fixed instant keeps the
+// server output and the browser's first render identical (no hydration drift),
+// and the hands land on the real time one frame later.
+const PLACEHOLDER = new Date(2000, 0, 1, 0, 0, 0);
 
 /** Clock angles in degrees, 0 = 12 o'clock. */
 function angles(now: Date) {
@@ -20,21 +24,23 @@ function angles(now: Date) {
 }
 
 export default function Clock() {
-  // A fixed value first: the server and the browser's first render have to
-  // agree, otherwise React complains and the hands jump on hydration.
-  const [now, setNow] = useState(() => new Date(2000, 0, 1, 0, 0, 0));
-  const [ready, setReady] = useState(false);
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    // The first read happens on the next frame rather than straight inside the
+    // effect, which keeps the render pass free of a synchronous state update.
     const tick = () => setNow(new Date());
-    tick();
-    setReady(true);
+    const frame = window.requestAnimationFrame(tick);
     const id = window.setInterval(tick, 1000);
-    return () => window.clearInterval(id);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearInterval(id);
+    };
   }, []);
 
-  const { hour, minute, second } = angles(now);
-  const label = ready
+  const shown = now ?? PLACEHOLDER;
+  const { hour, minute, second } = angles(shown);
+  const label = now
     ? `Local time ${now.toLocaleTimeString(undefined, {
         hour: "2-digit",
         minute: "2-digit",
