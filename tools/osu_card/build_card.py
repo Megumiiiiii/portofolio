@@ -53,6 +53,17 @@ CONTACTS = [
 # an osu! bio sits on the site's own background, which we do not control.
 PLATE = "#1B1032"
 
+# osu!'s "me!" box scrolls when the image is tall, so this card is deliberately
+# short: the panel is only 8 rows, and letting the 47-row detail portrait set
+# the height would leave ~600px of empty plate. The 26-row line art at a narrow
+# column keeps the whole card around one panel tall -- no scrolling, no crop.
+ART_SRC = bc.ASCII_SRC          # 100x80 line art (light ink, for a dark plate)
+ART_COL_WIDTH = 260.0
+# Only the top of the portrait is drawn: hat, face, shoulders. The full 80 rows
+# would make the card ~430px tall for an 8-row panel, which is what forced the
+# osu! bio to scroll.
+ART_LINES = 46
+
 OUT_DIR = ROOT / "public" / "readme"
 SVG_OUT = OUT_DIR / "card_osu.svg"
 PNG_OUT = OUT_DIR / "card_osu.png"
@@ -111,11 +122,13 @@ def build() -> tuple[str, int, int]:
     c = dict(bc.THEMES["purple"])
     c["bg"] = PLATE
 
-    art = bc.load_art(c["art_src"])
+    art = bc.load_art(ART_SRC)[:ART_LINES]
     art_cols = max(len(line) for line in art)
-    art_font, art_line = bc.art_metrics(art_cols)
+    # Same metric function, but fitted to this card's narrower art column.
+    art_font = ART_COL_WIDTH / (art_cols * bc.ADVANCE)
+    art_line = art_font * bc.ADVANCE / bc.ART_CELL_ASPECT
 
-    panel_x = int(bc.MARGIN + bc.ART_COL_WIDTH + bc.GUTTER)
+    panel_x = int(bc.MARGIN + ART_COL_WIDTH + bc.GUTTER)
     _, panel_rows = build_panel(panel_x, 0.0)  # dry run for the row count
 
     # Art and panel share one horizontal centre line, exactly as the README
