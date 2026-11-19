@@ -84,7 +84,7 @@ def flood_background(im: Image.Image) -> list[list[bool]]:
     return mask
 
 
-def to_ascii(im: Image.Image, cols: int, rows: int) -> list[str]:
+def to_ascii(im: Image.Image, cols: int, rows: int, invert: bool = False) -> list[str]:
     # Key the background BEFORE dropping the alpha channel, or a cut-out PNG
     # would look fully opaque and the whole frame would come out inked.
     bg = key_background(im)
@@ -108,7 +108,10 @@ def to_ascii(im: Image.Image, cols: int, rows: int) -> list[str]:
                     kept += 1
                     r_, g_, b_ = px[x, y]
                     lum = (0.299 * r_ + 0.587 * g_ + 0.114 * b_) / 255
-                    ink += 1.0 - lum
+                    # Dark-ink-on-white sources want 1-lum; a light figure on a
+                    # dark backdrop (the osu! bio art) wants lum, or the subject
+                    # comes out as the emptiest cells instead of the densest.
+                    ink += lum if invert else 1.0 - lum
             if not total or kept / total < MIN_COVERAGE:
                 line.append(" ")
                 continue
@@ -124,10 +127,15 @@ def main() -> None:
     ap.add_argument("out")
     ap.add_argument("--cols", type=int, default=269)
     ap.add_argument("--rows", type=int, default=298)
+    ap.add_argument(
+        "--invert",
+        action="store_true",
+        help="light subject on a dark backdrop: ink follows brightness, not darkness",
+    )
     args = ap.parse_args()
 
     src = Path(args.image)
-    lines = to_ascii(Image.open(src), args.cols, args.rows)
+    lines = to_ascii(Image.open(src), args.cols, args.rows, invert=args.invert)
 
     # Trim the empty frame so the art sits tight in the card.
     keep_rows = [i for i, l in enumerate(lines) if l.strip()]

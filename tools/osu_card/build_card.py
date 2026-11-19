@@ -54,15 +54,12 @@ CONTACTS = [
 PLATE = "#1B1032"
 
 # osu!'s "me!" box scrolls when the image is tall, so this card is deliberately
-# short: the panel is only 8 rows, and letting the 47-row detail portrait set
-# the height would leave ~600px of empty plate. The 26-row line art at a narrow
-# column keeps the whole card around one panel tall -- no scrolling, no crop.
-ART_SRC = bc.ASCII_SRC          # 100x80 line art (light ink, for a dark plate)
+# short: the panel is only 8 rows, and a full-height portrait would leave a lot
+# of empty plate. The bio art is a 100x53 grid (square-ish source, cell aspect
+# 0.54), which at a 260px column lands the card at ~864x286 -- one panel tall.
+ART_SRC = ROOT / "assets" / "ascii-art-osu.txt"
 ART_COL_WIDTH = 260.0
-# Only the top of the portrait is drawn: hat, face, shoulders. The full 80 rows
-# would make the card ~430px tall for an 8-row panel, which is what forced the
-# osu! bio to scroll.
-ART_LINES = 46
+ART_LINES = 53  # the whole scene: figure, overhang, night sky
 
 OUT_DIR = ROOT / "public" / "readme"
 SVG_OUT = OUT_DIR / "card_osu.svg"
