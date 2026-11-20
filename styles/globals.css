@@ -497,3 +497,9 @@ body {
     scroll-behavior: auto !important;
   }
 }
+/* The Icyteru tile is half dark artwork: on the dark page its top-left edge
+   melts into the background, so a hairline in the current ink keeps the shape
+   readable in both modes without adding a visible border in light mode. */
+.app-icon {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent);
+}
