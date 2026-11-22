@@ -814,3 +814,92 @@ html {
 html[data-echoes] .creep-grain {
   opacity: calc(0.55 + min(var(--echo, 0) * 0.02, 0.4));
 }
+
+
+/* ---- The way out -------------------------------------------------------
+   Bottom right, hairline, 36px. Hidden until the visitor is past the first
+   section so it never competes with the header, and it borrows the same tokens
+   as everything else, which is why it does not read as a widget bolted on. */
+.back-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--accent) 88%, white);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.back-top[data-visible="true"] {
+  opacity: 0.85;
+  transform: none;
+  pointer-events: auto;
+}
+
+.back-top[data-visible="true"]:hover {
+  opacity: 1;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.back-top:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  outline-offset: 3px;
+}
+
+/* Deep in the copies it stops being a quiet utility and starts glowing. */
+.back-top[data-deep="true"] {
+  border-color: color-mix(in srgb, var(--accent) 58%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+/* The cut back to the top. Blackout rather than a long smooth scroll, which
+   from four hundred screens down reads as being dragged back. */
+html.rewinding::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: #08030a;
+  animation: rewind-cut 0.32s ease-out forwards;
+}
+
+@keyframes rewind-cut {
+  0% { opacity: 0; }
+  22% { opacity: 0.92; }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 640px) {
+  .back-top {
+    right: 0.9rem;
+    bottom: 0.9rem;
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-top {
+    transition: opacity 0.2s linear;
+    transform: none;
+  }
+  html.rewinding::after {
+    animation-duration: 0.18s;
+  }
+}

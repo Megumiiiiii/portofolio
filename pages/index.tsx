@@ -7,6 +7,7 @@ import ContactMe from "../components/ContactMe";
 import Background from "../components/Background";
 import Creep from "../components/Creep";
 import Endless from "../components/Endless";
+import BackToTop from "../components/BackToTop";
 import ProjectList from "../components/ProjectList";
 import Nodes from "../components/Project";
 
@@ -68,6 +69,9 @@ export default function Home() {
         {/* After the last real section the page keeps producing copies. */}
         <Endless />
         </main>
+        {/* Outside <main>: a filter on main would make this fixed element a
+            child of the filtered box and scroll it with the page. */}
+        <BackToTop />
       </div>
     </div>
   );
