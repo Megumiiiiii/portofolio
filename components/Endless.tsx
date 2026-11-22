@@ -90,6 +90,50 @@ export default function Endless() {
       }
     };
 
+    /**
+     * The neofetch card is the one drawing in the page, so it is the one thing a
+     * copy can visibly get wrong. Mirror it, tilt it, and eventually shove it
+     * past the edge of its own frame until it is cropped -- a card that is
+     * still perfectly legible in the fourth copy reads as an untouched image
+     * pasted into a broken page.
+     */
+    const derange = (root: HTMLElement, level: number) => {
+      const cards = Array.from(
+        root.querySelectorAll<HTMLElement>('img[src*="/readme/card"]')
+      );
+      if (!cards.length) return;
+
+      // The frame has to clip, or a translated card just spills into the
+      // neighbouring section and the effect reads as a layout bug.
+      const frame = cards[0].parentElement;
+      if (frame) frame.style.overflow = "hidden";
+      root.style.overflow = "hidden";
+
+      if (level < 2) return;
+
+      const between = (min: number, max: number) => min + Math.random() * (max - min);
+      const mirror = level >= 4 && Math.random() < 0.65 ? -1 : 1;
+      const upsideDown = level >= 7 && Math.random() < 0.5 ? -1 : 1;
+      const tilt = level >= 3 ? between(-2.5, 2.5) * Math.min(level / 2, 3) : 0;
+      // Capped so a sliver always stays in frame: a copy whose card has left
+      // completely just looks like an empty section, not a damaged one.
+      const slideX =
+        level >= 5 ? between(-1, 1) * Math.min(level * 6, 62) : between(-2, 2);
+      const slideY = level >= 6 ? between(-1, 1) * Math.min(level * 3, 30) : 0;
+      const zoom = level >= 6 ? 1 + between(0.05, 0.3) : 1;
+
+      const transform =
+        `translate(${slideX.toFixed(1)}%, ${slideY.toFixed(1)}%) ` +
+        `rotate(${tilt.toFixed(1)}deg) ` +
+        `scale(${(mirror * zoom).toFixed(2)}, ${(upsideDown * zoom).toFixed(2)})`;
+
+      cards.forEach((card) => {
+        card.style.transform = transform;
+        card.style.transformOrigin = "center";
+        if (level >= 9) card.style.filter = "blur(0.5px) contrast(1.12)";
+      });
+    };
+
     const build = (source: HTMLElement, level: number) => {
       const node = source.cloneNode(true) as HTMLElement;
       node.removeAttribute("id");
@@ -107,6 +151,7 @@ export default function Endless() {
       if (level >= 3) node.dataset.rot = "";
       if (level >= 8) node.dataset.glitch = "";
       corrode(node, level);
+      derange(node, level);
 
       const whisper = document.createElement("p");
       whisper.className = "echo-whisper";
