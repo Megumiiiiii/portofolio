@@ -1,0 +1,25 @@
+# CBM: hanya kode yang masuk graph.
+node_modules/
+.next/
+out/
+.vercel/
+.ario-deploy/
+coverage/
+
+# Aset biner & hasil generate (kartu SVG/PNG dibuat oleh tools/, bukan sumber)
+assets/
+public/
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.svg
+*.ico
+*.woff
+*.woff2
+
+# Data & lockfile
+*.json
+!package.json
+*.lock
+yarn.lock
