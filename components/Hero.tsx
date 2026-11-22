@@ -37,6 +37,18 @@ export default function Hero() {
           <a href="#about" className="heroButton">
             About
           </a>
+          <a href="#project" className="heroButton">
+            Projects
+          </a>
+          <a href="#experience" className="heroButton">
+            Experiences
+          </a>
+          <a href="#nodes" className="heroButton">
+            Nodes
+          </a>
+          <a href="#contact" className="heroButton">
+            Contact
+          </a>
           <a
             href="https://learn.megumii.xyz"
             rel="noreferrer"
@@ -44,15 +56,6 @@ export default function Hero() {
             className="heroButton"
           >
             Docs
-          </a>
-          <a href="#experience" className="heroButton">
-            Experiences
-          </a>
-          <a href="#contact" className="heroButton">
-            Contact
-          </a>
-          <a href="#project" className="heroButton">
-            Nodes
           </a>
         </nav>
       </div>
