@@ -16,20 +16,35 @@ const TICKS = Array.from({ length: 12 }, (_, i) => i);
 const PLACEHOLDER = new Date(2000, 0, 1, 0, 0, 0);
 
 /** Clock angles in degrees, 0 = 12 o'clock. */
-function angles(now: Date) {
+function angles(now: Date, reversed: boolean) {
   const seconds = now.getSeconds();
   const minutes = now.getMinutes() + seconds / 60;
   const hours = (now.getHours() % 12) + minutes / 60;
-  return { hour: hours * 30, minute: minutes * 6, second: seconds * 6 };
+  return {
+    hour: hours * 30,
+    minute: minutes * 6,
+    // Past roughly two thirds of the page the clock stops agreeing with the
+    // visitor and the second hand runs the other way. --creep is written by
+    // components/Creep.tsx, so this needs no shared state.
+    second: seconds * 6 * (reversed ? -1 : 1),
+  };
 }
 
 export default function Clock() {
   const [now, setNow] = useState<Date | null>(null);
+  const [reversed, setReversed] = useState(false);
 
   useEffect(() => {
     // The first read happens on the next frame rather than straight inside the
     // effect, which keeps the render pass free of a synchronous state update.
-    const tick = () => setNow(new Date());
+    const tick = () => {
+      setNow(new Date());
+      const creep =
+        parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue("--creep"),
+        ) || 0;
+      setReversed(creep > 0.66);
+    };
     const frame = window.requestAnimationFrame(tick);
     const id = window.setInterval(tick, 1000);
     return () => {
@@ -39,7 +54,7 @@ export default function Clock() {
   }, []);
 
   const shown = now ?? PLACEHOLDER;
-  const { hour, minute, second } = angles(shown);
+  const { hour, minute, second } = angles(shown, reversed);
   const label = now
     ? `Local time ${now.toLocaleTimeString(undefined, {
         hour: "2-digit",

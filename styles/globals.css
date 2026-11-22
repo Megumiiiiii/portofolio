@@ -499,7 +499,192 @@ body {
 }
 /* The Icyteru tile is half dark artwork: on the dark page its top-left edge
    melts into the background, so a hairline in the current ink keeps the shape
-   readable in both modes without adding a visible border in light mode. */
+   readable in both modes. Used by the project card. */
 .app-icon {
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent);
+}
+
+/* ---------------------------------------------------------------------------
+   Projects
+   --------------------------------------------------------------------------- */
+.project-card {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--accent) 14%, transparent);
+  backdrop-filter: blur(6px);
+  transition: border-color 0.35s ease, transform 0.35s ease;
+}
+
+.project-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  transform: translateY(-2px);
+}
+
+.project-chip {
+  padding: 3px 9px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 999px;
+  color: var(--sub);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------------------
+   The page gets wrong as you scroll
+   ---------------------------------------------------------------------------
+   components/Creep.tsx writes two things on <html>: `--creep` (0 at the top,
+   1 at the bottom) and `data-creep` (the stage, 0-4). Everything here reads
+   those, so the descent is one custom-property write per frame with no layout
+   work, and it never fights the scroll snap.
+*/
+.creep-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 20; /* above the page, below the sticky header */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.creep-vignette {
+  position: absolute;
+  inset: -15%;
+  background: radial-gradient(
+    ellipse at 50% 42%,
+    rgba(9, 3, 14, 0) 26%,
+    rgba(9, 3, 14, 0.55) 62%,
+    rgba(9, 3, 14, 0.95) 88%
+  );
+  opacity: calc(var(--creep, 0) * 0.95);
+}
+
+.creep-grain {
+  position: absolute;
+  inset: 0;
+  opacity: calc(max(0, var(--creep, 0) - 0.45) * 1.5);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.55'/></svg>");
+  mix-blend-mode: overlay;
+  animation: creep-grain 1.1s steps(2, end) infinite;
+}
+
+@keyframes creep-grain {
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-2%, 1%, 0); }
+  100% { transform: translate3d(1%, -1%, 0); }
+}
+
+.creep-eyes span {
+  position: absolute;
+  width: 34px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    #ff2f4d 0 30%,
+    rgba(255, 47, 77, 0.35) 55%,
+    transparent 72%
+  );
+  filter: blur(0.6px);
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  animation: creep-blink 7s ease-in-out infinite;
+}
+
+.creep-eyes span:nth-child(1) { top: 21%; left: 4%; }
+.creep-eyes span:nth-child(2) { top: 21.5%; left: 8.5%; }
+.creep-eyes span:nth-child(3) { top: 57%; right: 5%; }
+.creep-eyes span:nth-child(4) { top: 57.5%; right: 9.5%; }
+.creep-eyes span:nth-child(5) { bottom: 13%; left: 22%; }
+.creep-eyes span:nth-child(6) { bottom: 9%; right: 27%; }
+
+html[data-creep="3"] .creep-eyes span { opacity: 0.28; }
+html[data-creep="4"] .creep-eyes span { opacity: 0.78; }
+
+@keyframes creep-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  94%, 96% { transform: scaleY(0.08); }
+}
+
+.creep-whisper {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 26px;
+  margin: 0;
+  color: #ff7b93;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  letter-spacing: 0.42em;
+  text-align: center;
+  text-transform: lowercase;
+  text-shadow: 0 0 18px rgba(255, 47, 77, 0.55);
+  opacity: calc(var(--creep, 0) * 0.9);
+}
+
+/* The sky drains first: sakura turns to ash, then to something drier. */
+html[data-creep="2"] .bg-layer,
+html[data-creep="3"] .bg-layer,
+html[data-creep="4"] .bg-layer {
+  filter: saturate(calc(1 - var(--creep, 0) * 0.85))
+    brightness(calc(1 - var(--creep, 0) * 0.32));
+}
+
+/* Then the type starts to come apart. */
+html[data-creep="3"] .section-kicker,
+html[data-creep="4"] .section-kicker {
+  color: #ff9db1;
+  text-shadow: 1px 0 rgba(255, 47, 77, 0.55), -1px 0 rgba(80, 220, 255, 0.35);
+  animation: creep-shiver 4.2s steps(1, end) infinite;
+}
+
+@keyframes creep-shiver {
+  0%, 90%, 100% { transform: none; }
+  91% { transform: translate(-2px, 1px) skewX(-1deg); }
+  93% { transform: translate(2px, -1px) skewX(1deg); }
+  95% { transform: translate(-1px, 0); }
+  97% { transform: translate(1px, 1px) skewX(-0.5deg); }
+}
+
+/* By the last third the page stops borrowing the visitor's theme and picks its
+   own: the palette variables themselves shift, which flips every utility class
+   at once (text, cards, borders) instead of layering a black scrim over text
+   that would then be unreadable. */
+html[data-creep="3"] {
+  --bg: #2a0d1e;
+  --surface: #3a1226;
+  --ink: #ffd9e2;
+  --sub: #ff9db1;
+  --accent: #ff5c7a;
+  --clock-second: #ff3b5c;
+}
+
+html[data-creep="4"] {
+  --bg: #14040c;
+  --surface: #240812;
+  --ink: #ffe3ea;
+  --sub: #ff8fa8;
+  --accent: #ff3b5c;
+  --clock-second: #ff2f4d;
+}
+
+html[data-creep="3"] .creep-vignette,
+html[data-creep="4"] .creep-vignette {
+  opacity: calc(var(--creep, 0) * 0.55);
+}
+
+html[data-creep="4"] main {
+  filter: saturate(0.55) contrast(1.08);
+}
+
+/* The contact card only admits this at the very bottom of the page. */
+.contact-late {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.9s ease, opacity 1.6s ease;
+}
+
+html[data-creep="4"] .contact-late {
+  max-height: 6rem;
+  opacity: 1;
 }

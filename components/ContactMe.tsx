@@ -53,6 +53,11 @@ export default function ContactMe() {
         height={300}
         className="only-dark mt-4 h-auto w-full max-w-4xl"
       />
+      {/* Only revealed at the very bottom of the page, after the sky has
+          drained; see .contact-late in globals.css. */}
+      <p className="contact-late text-xs font-semibold uppercase tracking-[0.42em] text-pink-800">
+        we are still here
+      </p>
     </motion.div>
   );
 }

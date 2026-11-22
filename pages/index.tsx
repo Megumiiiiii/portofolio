@@ -5,7 +5,9 @@ import About from "../components/About";
 import WorkExperience from "../components/WorkExperience";
 import ContactMe from "../components/ContactMe";
 import Background from "../components/Background";
-import Projects from "../components/Project";
+import Creep from "../components/Creep";
+import ProjectList from "../components/ProjectList";
+import Nodes from "../components/Project";
 
 const title = "Megumii — Portfolio";
 const description =
@@ -39,6 +41,7 @@ export default function Home() {
         />
       </Head>
       <Background />
+      <Creep />
       {/* Everything interactive sits above the fixed background layer. */}
       <div className="relative z-10">
         <Header />
@@ -49,11 +52,14 @@ export default function Home() {
         <section id="about" className="snap-start">
           <About />
         </section>
+        <section id="project" className="snap-start">
+          <ProjectList />
+        </section>
         <section id="experience" className="snap-start">
           <WorkExperience />
         </section>
-        <section id="project" className="snap-start">
-          <Projects />
+        <section id="nodes" className="snap-start">
+          <Nodes />
         </section>
         <section id="contact" className="snap-start">
           <ContactMe />

@@ -57,30 +57,6 @@ export default function Header() {
           bgColor="transparent"
           style={iconStyle}
         />
-        {/* Icyteru is the one app icon on this row: a full-colour badge, not a
-            line glyph, so it is an <img> in the same 44px box. */}
-        <a
-          href="https://icyteru.megumii.xyz"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Icyteru"
-          title="Icyteru"
-          className="rounded-xl transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-900"
-        >
-          {/* SocialIcon draws a ~30px glyph inside its 44px box, so the badge is
-              scaled to that glyph and centred in the same 44px cell -- otherwise
-              the filled icon reads twice as heavy as the line icons beside it. */}
-          <span className="flex h-[44px] w-[44px] items-center justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/pict/icyteru.png"
-              alt=""
-              width={26}
-              height={26}
-              className="app-icon h-[26px] w-[26px] rounded-lg"
-            />
-          </span>
-        </a>
       </motion.nav>
       <div className="flex flex-col items-end gap-2">
         <div className="flex flex-row items-center gap-1">
