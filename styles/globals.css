@@ -127,6 +127,18 @@ body {
   }
 }
 
+/* Six hero buttons on a 390px phone: at the desktop padding they wrap to three
+   rows. Smaller type and padding keep them on two rows without shrinking the
+   tap target below ~32px. */
+@media (max-width: 640px) {
+  .heroButton {
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+}
+
 .scroll-shell,
 .thin-scroll {
   scrollbar-width: thin;
@@ -576,11 +588,17 @@ body {
 
 /* Blood, not eyes: thin drips hanging from the top edge. Static on purpose —
    something that runs down the screen is a screensaver; something that has
-   already run down and stopped is a stain. */
+   already run down and stopped is a stain.
+
+   Each run carries its own `--appear` (the scroll position where it starts
+   showing) and `--h` (its length), so the page bleeds a little from the fourth
+   section onward and more with every section after it. No stage rules: the
+   opacity is a continuous function of --creep, so the blood never "switches
+   on" in one jump. */
 .creep-blood span {
   position: absolute;
   top: -6px;
-  width: 3px;
+  width: var(--w, 3px);
   border-radius: 0 0 45% 45% / 0 0 12% 12%;
   background: linear-gradient(
     to bottom,
@@ -589,8 +607,8 @@ body {
     #5e000d 72%,
     #470009 100%
   );
-  opacity: 0;
-  transition: opacity 1.8s ease;
+  height: calc(var(--h, 110px) * (0.85 + var(--creep, 0) * 0.4));
+  opacity: clamp(0, calc((var(--creep, 0) - var(--appear, 0.42)) * 7), 1);
 }
 
 /* The bead at the end of the run. */
@@ -599,24 +617,31 @@ body {
   position: absolute;
   left: 50%;
   bottom: -5px;
-  width: 7px;
-  height: 9px;
+  width: calc(var(--w, 3px) * 2.4);
+  height: calc(var(--w, 3px) * 3);
   transform: translateX(-50%);
   border-radius: 50% 50% 46% 46% / 62% 62% 38% 38%;
   background: #4f000a;
 }
 
-/* Kept clear of both top corners: the header icons and the clock live there,
-   and a drip that appears to hang off a social icon reads as a UI bug. */
-.creep-blood span:nth-child(1) { left: 22%; height: 110px; width: 3px; }
-.creep-blood span:nth-child(2) { left: 27%; height: 176px; width: 2px; }
-.creep-blood span:nth-child(3) { right: 22%; height: 132px; width: 3px; }
-.creep-blood span:nth-child(4) { right: 27%; height: 78px; width: 2px; }
-.creep-blood span:nth-child(5) { left: 44%; height: 60px; width: 2px; }
-.creep-blood span:nth-child(6) { right: 41%; height: 194px; width: 3px; }
-
-html[data-creep="3"] .creep-blood span { opacity: 0.45; }
-html[data-creep="4"] .creep-blood span { opacity: 0.95; }
+/* Clear of both top corners: the header icons and the clock live there, and a
+   drip behind a social icon reads as a string attached to it. Widths vary more
+   than lengths -- one heavy run among thin ones is what reads as soaked, while
+   uniform hairlines read as a leak. */
+.creep-blood span:nth-child(1) { left: 18%; --h: 90px; --w: 2px; --appear: 0.42; }
+.creep-blood span:nth-child(2) { right: 20%; --h: 120px; --w: 4px; --appear: 0.46; }
+.creep-blood span:nth-child(3) { left: 30%; --h: 150px; --w: 3px; --appear: 0.5; }
+.creep-blood span:nth-child(4) { right: 32%; --h: 70px; --w: 2px; --appear: 0.55; }
+.creep-blood span:nth-child(5) { left: 44%; --h: 200px; --w: 5px; --appear: 0.6; }
+.creep-blood span:nth-child(6) { right: 46%; --h: 110px; --w: 2px; --appear: 0.64; }
+.creep-blood span:nth-child(7) { left: 16%; --h: 60px; --w: 2px; --appear: 0.68; }
+.creep-blood span:nth-child(8) { right: 16%; --h: 180px; --w: 4px; --appear: 0.72; }
+.creep-blood span:nth-child(9) { left: 55%; --h: 130px; --w: 3px; --appear: 0.76; }
+.creep-blood span:nth-child(10) { right: 57%; --h: 90px; --w: 2px; --appear: 0.8; }
+.creep-blood span:nth-child(11) { left: 24%; --h: 240px; --w: 6px; --appear: 0.84; }
+.creep-blood span:nth-child(12) { right: 26%; --h: 160px; --w: 3px; --appear: 0.88; }
+.creep-blood span:nth-child(13) { left: 68%; --h: 100px; --w: 2px; --appear: 0.92; }
+.creep-blood span:nth-child(14) { right: 70%; --h: 220px; --w: 4px; --appear: 0.95; }
 
 .creep-whisper {
   position: absolute;

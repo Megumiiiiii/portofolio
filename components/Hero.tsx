@@ -32,7 +32,7 @@ export default function Hero() {
         </p>
         <nav
           aria-label="Page"
-          className="px-5 mt-6 flex flex-wrap justify-center gap-3"
+          className="px-4 mt-6 flex flex-wrap justify-center gap-2 sm:gap-3"
         >
           <a href="#about" className="heroButton">
             About

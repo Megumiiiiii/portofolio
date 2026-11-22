@@ -81,13 +81,12 @@ export default function Creep() {
     <div aria-hidden="true" className="creep-layer">
       <div className="creep-vignette" />
       <div className="creep-grain" />
+      {/* Fourteen runs, each with its own trigger point in the stylesheet, so
+          blood starts at the fourth section and thickens as the page goes on. */}
       <div className="creep-blood">
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
+        {Array.from({ length: 14 }, (_, i) => (
+          <span key={i} />
+        ))}
       </div>
       <p className="creep-whisper">{WHISPERS[stage] ?? ""}</p>
     </div>
