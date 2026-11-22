@@ -607,7 +607,10 @@ body {
     #5e000d 72%,
     #470009 100%
   );
-  height: calc(var(--h, 110px) * (0.85 + var(--creep, 0) * 0.4));
+  height: calc(
+    var(--h, 110px) *
+      (0.85 + var(--creep, 0) * 0.4 + min(var(--echo, 0) * 0.025, 0.8))
+  );
   opacity: clamp(0, calc((var(--creep, 0) - var(--appear, 0.42)) * 7), 1);
 }
 
@@ -724,4 +727,90 @@ html[data-creep="4"] main {
 html[data-creep="4"] .contact-late {
   max-height: 6rem;
   opacity: 1;
+}
+
+
+/* ---- The endless copies -------------------------------------------------
+   Endless.tsx appends clones of the real sections after Contact and sets
+   `--echo` on <html> (how many copies exist) plus `--n` on each copy (its
+   depth). Everything below scales off those two numbers: the deeper you go,
+   the less the page bothers to pretend. */
+
+html {
+  --echo: 0;
+}
+
+/* Scroll anchoring would fight the manual compensation Endless.tsx does when
+   it drops the oldest copy. */
+.scroll-shell {
+  overflow-anchor: none;
+}
+
+.creep-echo {
+  position: relative;
+  isolation: isolate;
+}
+
+/* A wash from the top: by the time a copy appears, the ceiling above it has
+   been bleeding for a while. */
+.creep-echo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(96, 0, 14, calc(min(var(--n, 1) * 0.035, 0.5))),
+      transparent 52%
+    ),
+    radial-gradient(
+      ellipse at 50% 118%,
+      rgba(120, 0, 22, calc(min(var(--n, 1) * 0.03, 0.4))),
+      transparent 62%
+    );
+}
+
+.creep-echo[data-rot] {
+  filter: saturate(calc(1 - min(var(--n, 1) * 0.05, 0.72)))
+    contrast(calc(1 + min(var(--n, 1) * 0.02, 0.35)))
+    brightness(calc(1 - min(var(--n, 1) * 0.016, 0.34)));
+}
+
+.creep-echo[data-glitch] :is(h1, h2, h3, p, a, span) {
+  text-shadow:
+    1px 0 rgba(255, 0, 60, 0.35),
+    -1px 0 rgba(0, 200, 255, 0.16);
+}
+
+.echo-whisper {
+  position: absolute;
+  left: 50%;
+  bottom: 1.6rem;
+  z-index: 7;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: lowercase;
+  white-space: nowrap;
+  pointer-events: none;
+  color: color-mix(in srgb, var(--accent) 65%, white);
+  opacity: calc(0.3 + min(var(--n, 1) * 0.035, 0.6));
+}
+
+/* Six more runs that only open in the copies: --echo climbs by one per copy. */
+.creep-blood span:nth-child(15) { left: 34%; --h: 260px; --w: 5px; --deep: 1; }
+.creep-blood span:nth-child(16) { right: 36%; --h: 200px; --w: 3px; --deep: 2; }
+.creep-blood span:nth-child(17) { left: 60%; --h: 300px; --w: 6px; --deep: 3; }
+.creep-blood span:nth-child(18) { right: 62%; --h: 170px; --w: 4px; --deep: 4; }
+.creep-blood span:nth-child(19) { left: 47%; --h: 340px; --w: 3px; --deep: 5; }
+.creep-blood span:nth-child(20) { right: 48%; --h: 250px; --w: 5px; --deep: 6; }
+
+.creep-blood span:nth-child(n + 15) {
+  opacity: clamp(0, calc((var(--echo, 0) - var(--deep, 1)) * 0.4), 1);
+}
+
+html[data-echoes] .creep-grain {
+  opacity: calc(0.55 + min(var(--echo, 0) * 0.02, 0.4));
 }

@@ -6,6 +6,7 @@ import WorkExperience from "../components/WorkExperience";
 import ContactMe from "../components/ContactMe";
 import Background from "../components/Background";
 import Creep from "../components/Creep";
+import Endless from "../components/Endless";
 import ProjectList from "../components/ProjectList";
 import Nodes from "../components/Project";
 
@@ -64,6 +65,8 @@ export default function Home() {
         <section id="contact" className="snap-start">
           <ContactMe />
         </section>
+        {/* After the last real section the page keeps producing copies. */}
+        <Endless />
         </main>
       </div>
     </div>

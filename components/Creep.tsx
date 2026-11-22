@@ -31,6 +31,7 @@ function stageFor(progress: number): number {
 export default function Creep() {
   const [stage, setStage] = useState(0);
   const lastStage = useRef(0);
+  const base = useRef(0);
 
   useEffect(() => {
     const shell = document.querySelector<HTMLElement>(".scroll-shell");
@@ -41,7 +42,13 @@ export default function Creep() {
     const update = () => {
       frame = 0;
       const max = shell.scrollHeight - shell.clientHeight;
-      const progress = max > 0 ? Math.min(1, Math.max(0, shell.scrollTop / max)) : 0;
+      // The endless copies make the page taller forever. Measure progress
+      // against the real page only (frozen at the first copy), otherwise every
+      // appended section would drag the visitor back up the descent.
+      const echoes = Number(document.documentElement.dataset.echoes ?? 0);
+      if (!echoes) base.current = max;
+      const span = echoes && base.current ? base.current : max;
+      const progress = span > 0 ? Math.min(1, Math.max(0, shell.scrollTop / span)) : 0;
       const root = document.documentElement;
       root.style.setProperty("--creep", progress.toFixed(4));
 
@@ -81,10 +88,10 @@ export default function Creep() {
     <div aria-hidden="true" className="creep-layer">
       <div className="creep-vignette" />
       <div className="creep-grain" />
-      {/* Fourteen runs, each with its own trigger point in the stylesheet, so
-          blood starts at the fourth section and thickens as the page goes on. */}
+      {/* Twenty runs. The first fourteen are keyed to scroll within the real
+          page; the last six only open up in the endless copies below it. */}
       <div className="creep-blood">
-        {Array.from({ length: 14 }, (_, i) => (
+        {Array.from({ length: 20 }, (_, i) => (
           <span key={i} />
         ))}
       </div>
