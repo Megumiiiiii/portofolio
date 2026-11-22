@@ -46,9 +46,11 @@ export default function Creep() {
       root.style.setProperty("--creep", progress.toFixed(4));
 
       const next = stageFor(progress);
+      // Always write the attribute (stage 0 is a real stage, and CSS relies on
+      // the attribute existing), but only re-render React when it changes.
+      root.dataset.creep = String(next);
       if (next !== lastStage.current) {
         lastStage.current = next;
-        root.dataset.creep = String(next);
         setStage(next);
       }
     };
@@ -60,9 +62,17 @@ export default function Creep() {
     update();
     shell.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    // Images and the Lanyard card settle after first paint and grow the page;
+    // without this the visitor could reach the visual bottom while the ratio
+    // still reads "middle" and the descent never arrives.
+    const resize = new ResizeObserver(onScroll);
+    Array.from(shell.children).forEach((child) => resize.observe(child));
+    window.addEventListener("load", onScroll);
     return () => {
       shell.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("load", onScroll);
+      resize.disconnect();
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
