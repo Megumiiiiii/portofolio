@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
  *
  * One scroll listener on the snap container writes a single number,
  * `--creep` (0 at the top, 1 at the bottom), plus a `data-creep` stage on
- * <html>. Everything else — vignette, grain, eyes, the copy that starts
+ * <html>. Everything else — vignette, grain, blood, the copy that starts
  * noticing you — is CSS keyed off that number, so the effect costs one
  * property write per frame and no layout work.
  *
@@ -81,7 +81,7 @@ export default function Creep() {
     <div aria-hidden="true" className="creep-layer">
       <div className="creep-vignette" />
       <div className="creep-grain" />
-      <div className="creep-eyes">
+      <div className="creep-blood">
         <span />
         <span />
         <span />

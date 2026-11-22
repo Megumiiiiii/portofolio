@@ -574,37 +574,49 @@ body {
   100% { transform: translate3d(1%, -1%, 0); }
 }
 
-.creep-eyes span {
+/* Blood, not eyes: thin drips hanging from the top edge. Static on purpose —
+   something that runs down the screen is a screensaver; something that has
+   already run down and stopped is a stain. */
+.creep-blood span {
   position: absolute;
-  width: 34px;
-  height: 14px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    #ff2f4d 0 30%,
-    rgba(255, 47, 77, 0.35) 55%,
-    transparent 72%
+  top: -6px;
+  width: 3px;
+  border-radius: 0 0 45% 45% / 0 0 12% 12%;
+  background: linear-gradient(
+    to bottom,
+    rgba(80, 0, 10, 0) 0%,
+    #7a0012 9%,
+    #5e000d 72%,
+    #470009 100%
   );
-  filter: blur(0.6px);
   opacity: 0;
-  transition: opacity 1.4s ease;
-  animation: creep-blink 7s ease-in-out infinite;
+  transition: opacity 1.8s ease;
 }
 
-.creep-eyes span:nth-child(1) { top: 21%; left: 4%; }
-.creep-eyes span:nth-child(2) { top: 21.5%; left: 8.5%; }
-.creep-eyes span:nth-child(3) { top: 57%; right: 5%; }
-.creep-eyes span:nth-child(4) { top: 57.5%; right: 9.5%; }
-.creep-eyes span:nth-child(5) { bottom: 13%; left: 22%; }
-.creep-eyes span:nth-child(6) { bottom: 9%; right: 27%; }
-
-html[data-creep="3"] .creep-eyes span { opacity: 0.28; }
-html[data-creep="4"] .creep-eyes span { opacity: 0.78; }
-
-@keyframes creep-blink {
-  0%, 92%, 100% { transform: scaleY(1); }
-  94%, 96% { transform: scaleY(0.08); }
+/* The bead at the end of the run. */
+.creep-blood span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 7px;
+  height: 9px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 46% 46% / 62% 62% 38% 38%;
+  background: #4f000a;
 }
+
+/* Kept clear of both top corners: the header icons and the clock live there,
+   and a drip that appears to hang off a social icon reads as a UI bug. */
+.creep-blood span:nth-child(1) { left: 22%; height: 110px; width: 3px; }
+.creep-blood span:nth-child(2) { left: 27%; height: 176px; width: 2px; }
+.creep-blood span:nth-child(3) { right: 22%; height: 132px; width: 3px; }
+.creep-blood span:nth-child(4) { right: 27%; height: 78px; width: 2px; }
+.creep-blood span:nth-child(5) { left: 44%; height: 60px; width: 2px; }
+.creep-blood span:nth-child(6) { right: 41%; height: 194px; width: 3px; }
+
+html[data-creep="3"] .creep-blood span { opacity: 0.45; }
+html[data-creep="4"] .creep-blood span { opacity: 0.95; }
 
 .creep-whisper {
   position: absolute;
