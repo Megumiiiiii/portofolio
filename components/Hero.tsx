@@ -14,7 +14,7 @@ export default function Hero() {
     <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
       <Image
         className="relative rounded-full h-32 w-32 mx-auto object-cover"
-        src="/pict/zz.webp"
+        src="pict/zz.webp"
         alt="Megumii"
         width={128}
         height={128}

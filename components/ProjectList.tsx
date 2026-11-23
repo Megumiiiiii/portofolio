@@ -22,7 +22,7 @@ const projects: Project[] = [
     tagline: "Hermes gateway client — desktop and Android",
     summary:
       "A native client for my own Hermes agent: streaming chat, sessions, approvals, attachments and push, built on one renderer shared by Electron and a Capacitor WebView.",
-    logo: "/pict/icyteru.png",
+    logo: "pict/icyteru.png",
     stack: ["Electron", "React", "TypeScript", "Capacitor", "Vite"],
     links: [
       { label: "icyteru.megumii.xyz", href: "https://icyteru.megumii.xyz" },

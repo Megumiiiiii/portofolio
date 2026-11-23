@@ -7,12 +7,12 @@ export default function About() {
           Regenerate with `npm run card`. The contribution board lives at the
           bottom of the contact section. */}
       <img
-        src="/readme/card.svg"
+        src="readme/card.svg"
         alt="Megumii — neofetch profile card"
         className="only-light h-auto w-full"
       />
       <img
-        src="/readme/card-dark.svg"
+        src="readme/card-dark.svg"
         alt="Megumii — neofetch profile card"
         className="only-dark h-auto w-full"
       />

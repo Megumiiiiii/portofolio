@@ -23,7 +23,7 @@ export default function Home() {
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="icon" href="/me.ico" />
+        <link rel="icon" href="me.ico" />
         <link rel="canonical" href={siteUrl} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={siteUrl} />

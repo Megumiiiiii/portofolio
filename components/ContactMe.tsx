@@ -40,14 +40,14 @@ export default function ContactMe() {
           calendar, so it carries no background plate of its own; there is one
           file per theme and CSS paints only the matching one. */}
       <img
-        src="/readme/osu.svg"
+        src="readme/osu.svg"
         alt="osu! replay of my GitHub contributions"
         width={1018}
         height={300}
         className="only-light mt-4 h-auto w-full max-w-4xl"
       />
       <img
-        src="/readme/osu-dark.svg"
+        src="readme/osu-dark.svg"
         alt="osu! replay of my GitHub contributions"
         width={1018}
         height={300}
@@ -58,6 +58,16 @@ export default function ContactMe() {
       <p className="contact-late text-xs font-semibold uppercase tracking-[0.42em] text-pink-800">
         we are still here
       </p>
+      <nav className="contact-late mt-3 flex items-center gap-5 text-[10px] font-semibold uppercase tracking-[0.3em] text-pink-800">
+        {/* Plain <a>: next/link always emits an absolute "/privacy", which
+            breaks when this export is served under a manifest path. */}
+        <a href="privacy" className="transition-opacity hover:opacity-60">
+          Privacy
+        </a>
+        <a href="terms" className="transition-opacity hover:opacity-60">
+          Terms
+        </a>
+      </nav>
     </motion.div>
   );
 }

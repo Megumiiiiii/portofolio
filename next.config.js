@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   output: "export",
+  // Static export must run from any path: Vercel serves it at "/", but the
+  // Arweave copy lives under /<manifest-id>/ on a path gateway.
+  assetPrefix: "./",
   images: {
     unoptimized: true,
     remotePatterns: [

@@ -99,7 +99,7 @@ export default function Endless() {
      */
     const derange = (root: HTMLElement, level: number) => {
       const cards = Array.from(
-        root.querySelectorAll<HTMLElement>('img[src*="/readme/card"]')
+        root.querySelectorAll<HTMLElement>('img[src*="readme/card"]')
       );
       if (!cards.length) return;
 

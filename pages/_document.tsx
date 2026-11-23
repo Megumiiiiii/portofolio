@@ -9,6 +9,12 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        {/* The export has to run from "/" on Vercel and from "/<manifest>/" on
+            an Arweave path gateway. next/router rewrites the URL to drop the
+            trailing slash after hydration, which would make every relative
+            image resolve against the gateway root, so the base is pinned once
+            at parse time. */}
+        <base href="./" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </Head>
       <body>

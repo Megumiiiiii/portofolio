@@ -11,7 +11,7 @@ export default function ExperienceCard1() {
       >
         <Image
           className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center"
-          src="/pict/sarco.png"
+          src="pict/sarco.png"
           alt="Sarcophagus"
           width={200}
           height={200}
@@ -33,14 +33,14 @@ export default function ExperienceCard1() {
         <div className="flex space-x-2 justify-center items-center">
           <Image
             className="h-10 w-10 rounded-full"
-            src="/pict/discord.webp"
+            src="pict/discord.webp"
             alt="Discord"
             width={40}
             height={40}
           />
           <Image
             className="h-10 w-10 rounded-full"
-            src="/pict/tele.webp"
+            src="pict/tele.webp"
             alt="Telegram"
             width={40}
             height={40}

@@ -18,16 +18,16 @@ type NodeCard = {
 };
 
 const tools = {
-  copy: { src: "/pict/copy.webp", alt: "Copy" },
-  github: { src: "/pict/github.webp", alt: "GitHub" },
-  ubuntu: { src: "/pict/ubuntu.webp", alt: "Ubuntu" },
-  vim: { src: "/pict/vim.webp", alt: "Vim" },
-  go: { src: "/pict/go.webp", alt: "Go" },
-  js: { src: "/pict/js.webp", alt: "JavaScript" },
-  typescript: { src: "/pict/typescript.webp", alt: "TypeScript" },
-  react: { src: "/pict/react.webp", alt: "React" },
-  metamask: { src: "/pict/metamask.webp", alt: "MetaMask" },
-  docker: { src: "/pict/docker.webp", alt: "Docker" },
+  copy: { src: "pict/copy.webp", alt: "Copy" },
+  github: { src: "pict/github.webp", alt: "GitHub" },
+  ubuntu: { src: "pict/ubuntu.webp", alt: "Ubuntu" },
+  vim: { src: "pict/vim.webp", alt: "Vim" },
+  go: { src: "pict/go.webp", alt: "Go" },
+  js: { src: "pict/js.webp", alt: "JavaScript" },
+  typescript: { src: "pict/typescript.webp", alt: "TypeScript" },
+  react: { src: "pict/react.webp", alt: "React" },
+  metamask: { src: "pict/metamask.webp", alt: "MetaMask" },
+  docker: { src: "pict/docker.webp", alt: "Docker" },
 };
 
 const nodes: NodeCard[] = [
@@ -37,7 +37,7 @@ const nodes: NodeCard[] = [
     summary: "The fastest parallel MPC network, launching on Sui",
     href: "https://ika-validators.com/validator/0x1b8f21f0222b347f166178c99693c16b56844341a3c01a306483e61115cdaebf",
     label: "ika-testnet-1.megumii.xyz",
-    logo: "/pict/ika.webp",
+    logo: "pict/ika.webp",
     tools: [tools.copy, tools.github, tools.ubuntu, tools.vim],
   },
   {
@@ -47,7 +47,7 @@ const nodes: NodeCard[] = [
       "Fastest growing #RWA blockchain with 5M+ loans recorded on-chain for 500k+ real-world customers",
     href: "https://polkadot.js.org/apps/?rpc=wss://rpc.mainnet.creditcoin.network/ws#/accounts",
     label: "Portal",
-    logo: "/pict/ctc.webp",
+    logo: "pict/ctc.webp",
     tools: [
       tools.copy,
       tools.github,
@@ -66,7 +66,7 @@ const nodes: NodeCard[] = [
       "Built on Substrate, Tangle Network empowers privacy-enhancing and governance-decentralized applications, incorporating cross-chain functionality, EVM compatibility, advanced governance systems, and ZK applications into a unified ecosystem.",
     href: "https://polkadot.js.org/apps/?rpc=wss://rpc.tangle.tools#/accounts",
     label: "Portal",
-    logo: "/pict/tangle.webp",
+    logo: "pict/tangle.webp",
     tools: [tools.copy, tools.github, tools.ubuntu, tools.vim],
   },
   {
@@ -76,7 +76,7 @@ const nodes: NodeCard[] = [
       "A decentralized dead man's switch built on Ethereum and Arweave.",
     href: "https://app.sarcophagus.io/archaeologists",
     label: "app.sarcophagus.io/archaeologists",
-    logo: "/pict/sarco.png",
+    logo: "pict/sarco.png",
     tools: [
       tools.copy,
       tools.github,
