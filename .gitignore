@@ -57,3 +57,6 @@ __pycache__/
 
 # ario-deploy local cache
 .ario-deploy/
+
+# ario-deploy upload cache (local only)
+.ario-deploy/
